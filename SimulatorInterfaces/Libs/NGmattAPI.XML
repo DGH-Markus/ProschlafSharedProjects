@@ -1,0 +1,811 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NGmattAPI</name>
+    </assembly>
+    <members>
+        <member name="T:NGmattAPI.BLEDongle">
+            <summary>
+            Represents a Blueguga BLE Dongle. This usb device allows any PC to use a Bluetooth Low energy radio
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.BLEDongle.getAvailableDongles">
+            <summary>
+            Compile an array of available dongles connected to the PC
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NGmattAPI.BLEDongle.openPort">
+            <summary>
+            Opens the serial port. It is required to use the device
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.BLEDongle.Dispose">
+            <summary>
+            Releases the port and disposes the class
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.BLEDongle.startScanning">
+            <summary>
+            Starts looking for nearby NGMatt devices
+            </summary>
+            <returns>Returns when the scanning has started. May throw BGApi exception</returns>
+        </member>
+        <member name="M:NGmattAPI.BLEDongle.stopScanning">
+            <summary>
+            Stops looking for nearby NGMatt devices
+            </summary>
+            <returns>Returns when the scanning has ended. May thow BGApi exception</returns>
+        </member>
+        <member name="P:NGmattAPI.BLEDongle.portID">
+            <summary>
+            Port name. In Windows port names start with COM
+            </summary>
+        </member>
+        <member name="E:NGmattAPI.BLEDongle.NGmattFoundEvent">
+            <summary>
+            This event is fired when the dongle scans an NGmatt
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.BLEDongle.detectedDevices">
+            <summary>
+            This is a list of all the devices found during this session
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.BluegigaDriver.bd_addr">
+            <summary>
+            This class holds the bluetooth address as a byte array
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.BluegigaDriver.bd_addr.#ctor">
+            <summary>
+            Class constructor. Initializes array
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.BluegigaDriver.bd_addr.ToString">
+            <summary>
+            Returns a readable string
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:NGmattAPI.BluegigaDriver.bd_addr.Address">
+            <summary>
+            Array of bytes that encloses a bluetooth device address
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.BluegigaDriver.bd_addr.Length">
+            <summary>
+            Length of the stored address. Fixed to 6
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.BluegigaDriver.BgApi">
+            <summary>
+            Bluegiga Api abstraction class
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.MAX_MESSAGE">
+            <summary>
+            Assumes that the maximum message size in bytes that ever goes over the wire in both directions is less than this value.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.MAX_RECEIVE_MESSAGE">
+            <summary>
+            The maximum receive message size in bytes.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.SIZE_HEADER">
+            <summary>
+            The size of the header in bytes.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.EVENT_TIMEOUT_DEFAULT">
+            <summary>
+            Default wait time for the arrival of an event.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.m_serialPort">
+            <summary>
+            The serial port we use to communicate with the BLE dongle.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.m_port">
+            <summary>
+            The port name that the BLE dongle is connected to, ex. "COM3".
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.m_stream">
+            <summary>
+            The stream connected to <code>m_serialPort</code> we use to read/write to/from the BLE dongle.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.m_waitHandleResponse">
+            <summary>
+            Wait handle for a response from the ble device.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.m_response">
+            <summary>
+            Holds the response of a previously sent bgapi BgApiCommand.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.m_serialDataReceivedEventHandler">
+            <summary>
+            The event handler called when new data is received at the serial port.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.m_rx">
+            <summary>
+            Receive buffer.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.m_rxOffset">
+            <summary>
+            The number of valid receive bytes in the receive buffer <code>m_rx</code>.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApi.m_ble_error2string">
+            <summary>
+            Maps errors to strings.
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.BluegigaDriver.BgApi.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="port">ex. "COM23"</param>
+        </member>
+        <member name="M:NGmattAPI.BluegigaDriver.BgApi.Open">
+            <summary>
+            Opens the connection to a bgapi device.
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.BluegigaDriver.BgApi.Close">
+            <summary>
+            Closes the stream and serial port to a BLE device.
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.BluegigaDriver.BgApi.m_serialPort_DataReceived(System.Object,System.IO.Ports.SerialDataReceivedEventArgs)">
+            <summary>
+            Event handler for receiving data from the serial stream.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:NGmattAPI.BluegigaDriver.BgApi.check(System.Int32,System.Int32)">
+            <summary>
+            Assert helper.
+            </summary>
+            <param name="actual"></param>
+            <param name="expected"></param>
+        </member>
+        <member name="M:NGmattAPI.BluegigaDriver.BgApi.Send(NGmattAPI.BluegigaDriver.BgApiCommand,System.Boolean)">
+            <summary>
+            Sends a command and receives a response from a ble device.
+            </summary>
+            <param name="command">The BgApiCommand to send.</param>
+            <param name="no_return">True, iff the command has no response (ex. the reset command does not return a response).</param>
+            <returns>The response from the bgapi device.</returns>
+        </member>
+        <member name="M:NGmattAPI.BluegigaDriver.BgApi.log(System.String)">
+            <summary>
+            All logging goes through this method for easy overriding.
+            </summary>
+            <param name="msg">The message to log.</param>
+        </member>
+        <member name="P:NGmattAPI.BluegigaDriver.BgApi.IsOpen">
+            <summary>
+            Indicates whether the underlying serial port is open.
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.BluegigaDriver.BgApi.Info">
+            <summary>
+            Information about the ble device.
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.BluegigaDriver.BgApiEventResponse">
+            <summary>
+            Base class for events and responses.
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.BluegigaDriver.BgApiPacket">
+            <summary>
+            Base class for all types of packets going over the wire.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluegigaDriver.BgApiEventResponse.result">
+            <summary>
+            The result of a response or event.
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.BluegigaDriver.BgApiException">
+            <summary>
+            This exception will be thrown when the DONGLE generates an error message.
+            There are several different messages. Check Bluegiga documentation for more information
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.BluegigaDriver.BgApiCommand">
+            <summary>
+            Base class for commands.
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.BluetoothAbstraction.BluetoothDevice">
+            <summary>
+            Represents a remote Bluetooth device. A BluetoothDevice lets you create a connection with the respective device or query information about it, such as the name, address, class, and bonding state.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluetoothAbstraction.BluetoothDevice.mac">
+            <summary>
+            Returns the hardware address of this BluetoothDevice used to identify each device
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluetoothAbstraction.BluetoothDevice.rssi">
+            <summary>
+            The RSSI value for the remote device as reported by the Bluetooth hardware. 0 if no RSSI value is available.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluetoothAbstraction.BluetoothDevice.onDeviceConnected">
+            <summary>
+            Callback indicating when GATT client has connected to a remote GATT server.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.BluetoothAbstraction.BluetoothDevice.onDeviceDisconnected">
+            <summary>
+            Callback indicating when GATT client has disconnected from a remote GATT server.
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.BluetoothAbstraction.BluetoothDevice.connect(System.IProgress{System.Int32})">
+            <summary>
+            Connect to GATT Server hosted by this device. It may throw an API exception if there are issues with the connection or if it times out.
+            </summary>
+            <param name="proggressReport">From 0 to 100% this report will be sent back as the connection procedure goes on</param>
+            <returns>Returns when the connection has been established. This function may throw an api exception</returns>
+        </member>
+        <member name="M:NGmattAPI.BluetoothAbstraction.BluetoothDevice.disconnect">
+            <summary>
+            Disconnect an already established connection to GATT Server.
+            </summary>
+            <returns>Returns when the connection has ended. This function may throw an api exception</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:NGmattAPI.EventApi.BgApi.m_serialPort" -->
+        <member name="F:NGmattAPI.EventApi.BgApi.m_port">
+            <summary>
+            The port name that the BLE dongle is connected to, ex. "COM3".
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.EventApi.BgApi.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="port">ex. "COM23"</param>
+        </member>
+        <member name="M:NGmattAPI.EventApi.BgApi.Open">
+            <summary>
+            Opens the connection to a bgapi device.
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.EventApi.BgApi.Close">
+            <summary>
+            Closes the stream and serial port to a BLE device.
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.EventApi.BgApi.IsOpen">
+            <summary>
+            Indicates whether the underlying serial port is open.
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.NGmattDevice">
+            <summary>
+            Represents a remote NGMatt device. An NGmattDevice instance lets you create a connection with the respective device or query information about it.
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice._firmwareRevision">
+            <summary>
+            NGMatt BLE 112 firmware revision
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice._softwareRevision">
+            <summary>
+            NGMatt BLE 112 software revision
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.onStatusChange">
+            <summary>
+            This event is fired periodically when the status changes
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.onProfileChange">
+            <summary>
+            This event is fired when the profile changes
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.onClockChange">
+            <summary>
+            This event is fired when the NGmatt clock changes
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.onDeviceConnected">
+            <summary>
+            This event is fired when the connection is established
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.onDeviceDisconnected">
+            <summary>
+            This event is fired when the device is disconnected
+            </summary>
+        </member>
+        <member name="M:NGmattAPI.NGmattDevice.#ctor(NGmattAPI.BluetoothAbstraction.BluetoothDevice)">
+            <summary>
+            Constructor wrapper
+            </summary>
+            <param name="device">Bluetooth device</param>
+        </member>
+        <member name="M:NGmattAPI.NGmattDevice.onNGMattConnected(System.Object,System.EventArgs)">
+            <summary>
+            This function is called when the Bluetooth connection is stablished and launchs the abstraction event handler
+            </summary>
+            <param name="sender">Evnet sender</param>
+            <param name="e">Event args (null)</param>
+        </member>
+        <member name="M:NGmattAPI.NGmattDevice.onNGmattDisconnected(System.Object,System.UInt16)">
+            <summary>
+            This function is called when the Bluetooth connection is ended and launchs the abstraction event handler
+            </summary>
+            <param name="sender">Evnet sender</param>
+            <param name="e">Disconnection cause</param>
+        </member>
+        <member name="M:NGmattAPI.NGmattDevice.connect(System.IProgress{System.Int32})">
+            <summary>
+            Connect to GATT Server hosted by this device. It may throw an API exception if there are issues with the connection or if it times out.
+            </summary>
+            <param name="proggressReport">From 0 to 100% this report will be sent back as the connection procedure goes on</param>
+            <returns>Returns when the connection has been established</returns>
+        </member>
+        <member name="M:NGmattAPI.NGmattDevice.onClockChanged(System.Object,System.Byte[])">
+            <summary>
+            This function is called when the clock characteristic changes and launches the abstraction event handler
+            </summary>
+            <param name="sender">Evnet sender</param>
+            <param name="e">Characteristic content</param>
+        </member>
+        <member name="M:NGmattAPI.NGmattDevice.profileChanged(System.Object,System.Byte[])">
+            <summary>
+            This function is called when the profile characteristic changes and launches the abstraction event handler
+            </summary>
+            <param name="sender">Evnet sender</param>
+            <param name="e">Characteristic content</param>
+        </member>
+        <member name="M:NGmattAPI.NGmattDevice.deviceStatusChanged(System.Object,System.Byte[])">
+            <summary>
+            This function is called when the device status characteristic changes and launches the abstraction event handler
+            </summary>
+            <param name="sender">Evnet sender</param>
+            <param name="e">Characteristic content</param>
+        </member>
+        <member name="M:NGmattAPI.NGmattDevice.disconnect">
+            <summary>
+            Disconnects an already established connection to a GATT Server.It may throw an API exception if there are issues.
+            </summary>
+            <returns>Returns when the connection has ended. This function may throw an api exception</returns>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.deviceName">
+            <summary>
+            Bluetooth Low Energy Device name
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.hardwareRevision">
+            <summary>
+            NGMatt Hardware revision
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.firmwareRevision">
+            <summary>
+            NGMatt BLE 112 firmware revision
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.softwareRevision">
+            <summary>
+            NGMatt BLE 112 software revision
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.deviceStatus">
+            <summary>
+            Holds the NGmatt status information. It is updated with an event handler
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.storedProfile">
+            <summary>
+            Holds the las profile set on the NGMatt
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.id">
+            <summary>
+            Gets the device id
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.rssi">
+            <summary>
+            The RSSI value for the remote device as reported by the Bluetooth hardware. 0 if no RSSI value is available.
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.NGmattDevice.PressureSet">
+            <summary>
+            This class holds a pressure set for abstraction
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv1Pressure">
+            <summary>
+            Pressure on the 1st tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv2Pressure">
+            <summary>
+            Pressure on the 2nd tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv3Pressure">
+            <summary>
+            Pressure on the 3rd tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv4Pressure">
+            <summary>
+            Pressure on the 4th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv5Pressure">
+            <summary>
+            Pressure on the 5th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv6Pressure">
+            <summary>
+            Pressure on the 6th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv7Pressure">
+            <summary>
+            Pressure on the 7th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv8Pressure">
+            <summary>
+            Pressure on the 8th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv9Pressure">
+            <summary>
+            Pressure on the 9th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv10Pressure">
+            <summary>
+            Pressure on the 10th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv11Pressure">
+            <summary>
+            Pressure on the 11th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.PressureSet.valv12Pressure">
+            <summary>
+            Pressure on the 12th tube
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.NGmattDevice.StoredProfile">
+            <summary>
+            Holds a set of pressures for the NGmatt device
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv1Pressure">
+            <summary>
+            The pressure in the first tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv2Pressure">
+            <summary>
+            The pressure in the second tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv3Pressure">
+            <summary>
+            The pressure in the third tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv4Pressure">
+            <summary>
+            The pressure in the forth tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv5Pressure">
+            <summary>
+            The pressure in the fifth tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv6Pressure">
+            <summary>
+            The pressure in the sixth tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv7Pressure">
+            <summary>
+            The pressure in the seventh tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv8Pressure">
+            <summary>
+            The pressure in the eighth tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv9Pressure">
+            <summary>
+            The pressure in the nineth tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv10Pressure">
+            <summary>
+            The pressure in the tenth tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv11Pressure">
+            <summary>
+            The pressure in the eleventh tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv12Pressure">
+            <summary>
+            The pressure in the twelveth tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv1Type">
+            <summary>
+            The unit of measurement used in the first tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv2Type">
+            <summary>
+            The unit of measurement used in the second tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv3Type">
+            <summary>
+            The unit of measurement used in the third tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv4Type">
+            <summary>
+            The unit of measurement used in the 4th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv5Type">
+            <summary>
+            The unit of measurement used in the 5th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv6Type">
+            <summary>
+            The unit of measurement used in the 6th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv7Type">
+            <summary>
+            The unit of measurement used in the 7th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv8Type">
+            <summary>
+            The unit of measurement used in the 8th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv9Type">
+            <summary>
+            The unit of measurement used in the 9th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv10Type">
+            <summary>
+            The unit of measurement used in the 10th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv11Type">
+            <summary>
+            The unit of measurement used in the 11th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.StoredProfile.valv12Type">
+            <summary>
+            The unit of measurement used in the 12th tube
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.NGmattDevice.StoredProfile.MeasureUnit">
+            <summary>
+            A characteristic can be set as an absolute pressure (mb) or seconds (sec)
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.StoredProfile.MeasureUnit.mb">
+            <summary>
+            This value has been set with an absolute amount of milibars
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.StoredProfile.MeasureUnit.sec">
+            <summary>
+            This value has been set with an amount of seconds
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.NGmattDevice.DeviceStatus">
+            <summary>
+            Holds the status of an NGmatt device
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.timeSinceLastMovement">
+            <summary>
+            Last session-related movement detected on the device
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.isSomeoneOnTheMattress">
+            <summary>
+            Returns the full body detection. This is the value used to start and hold a dream session
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.hasMovement">
+            <summary>
+            This is the full body movement deteccion parameter. While in a dream session it is used to start and end movements
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.sleepSessionState">
+            <summary>
+            Gets the dream session state
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv1Movement">
+            <summary>
+            Whether there is movement on the first tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv2Movement">
+            <summary>
+            Whether there is movement on the 2nd tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv3Movement">
+            <summary>
+            Whether there is movement on the 3rd tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv4Movement">
+            <summary>
+            Whether there is movement on the 4th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv5Movement">
+            <summary>
+            Whether there is movement on the 5th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv6Movement">
+            <summary>
+            Whether there is movement on the 6th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv7Movement">
+            <summary>
+            Whether there is movement on the 7th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv8Movement">
+            <summary>
+            Whether there is movement on the 8th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv9Movement">
+            <summary>
+            Whether there is movement on the 9th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv10Movement">
+            <summary>
+            Whether there is movement on the 10th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv11Movement">
+            <summary>
+            Whether there is movement on the 11th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv12Movement">
+            <summary>
+            Whether there is movement on the 12th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv1Presence">
+            <summary>
+            Whether there is presence on the first tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv2Presence">
+            <summary>
+            Whether there is presence on the 2nd tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv3Presence">
+            <summary>
+            Whether there is presence on the 3rd tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv4Presence">
+            <summary>
+            Whether there is presence on the 4th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv5Presence">
+            <summary>
+            Whether there is presence on the 5th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv6Presence">
+            <summary>
+            Whether there is presence on the 6th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv7Presence">
+            <summary>
+            Whether there is presence on the 7th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv8Presence">
+            <summary>
+            Whether there is presence on the 8th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv9Presence">
+            <summary>
+            Whether there is presence on the 9th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv10Presence">
+            <summary>
+            Whether there is presence on the 10th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv11Presence">
+            <summary>
+            Whether there is presence on the 11th tube
+            </summary>
+        </member>
+        <member name="P:NGmattAPI.NGmattDevice.DeviceStatus.valv12Presence">
+            <summary>
+            Whether there is presence on the 12th tube
+            </summary>
+        </member>
+        <member name="T:NGmattAPI.NGmattDevice.DeviceStatus.SessionStatus">
+            <summary>
+            Dream session status enum
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.DeviceStatus.SessionStatus.Standby">
+            <summary>
+            The device is waiting for a long pressence on the mattress to start recording
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.DeviceStatus.SessionStatus.Starting">
+            <summary>
+            The device is starting to record a dream session
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.DeviceStatus.SessionStatus.Recording">
+            <summary>
+            There is a dream session being recorded
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.DeviceStatus.SessionStatus.Ending">
+            <summary>
+            The session is being saved into the flash memory
+            </summary>
+        </member>
+        <member name="F:NGmattAPI.NGmattDevice.DeviceStatus.SessionStatus.Invalid">
+            <summary>
+            Unrecognized state
+            </summary>
+        </member>
+    </members>
+</doc>

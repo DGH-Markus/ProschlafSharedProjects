@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b44951ef-5c5a-4195-a622-7cf21d02a636" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8734/SimulatorWcfServices/DataExchangeService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service11.wsdl" MetadataType="Wsdl" ID="3bb72752-c7d1-45b8-a1af-3c36c415b20c" SourceId="1" SourceUrl="http://localhost:8734/SimulatorWcfServices/DataExchangeService/mex" />
+    <MetadataFile FileName="service22.xsd" MetadataType="Schema" ID="3511dd1b-a8a0-4e5d-a132-230750536c04" SourceId="1" SourceUrl="http://localhost:8734/SimulatorWcfServices/DataExchangeService/mex" />
+    <MetadataFile FileName="System11.xsd" MetadataType="Schema" ID="d425cff2-7d2b-4bc5-ba91-d1f4a64ab6b2" SourceId="1" SourceUrl="http://localhost:8734/SimulatorWcfServices/DataExchangeService/mex" />
+    <MetadataFile FileName="service23.xsd" MetadataType="Schema" ID="246ed572-67ea-426d-aada-83bdd921164a" SourceId="1" SourceUrl="http://localhost:8734/SimulatorWcfServices/DataExchangeService/mex" />
+    <MetadataFile FileName="Arrays11.xsd" MetadataType="Schema" ID="e69bb043-7b49-4f6c-a0cc-80f9977d5edd" SourceId="1" SourceUrl="http://localhost:8734/SimulatorWcfServices/DataExchangeService/mex" />
+    <MetadataFile FileName="ISAP.SimulatorWcfServices11.xsd" MetadataType="Schema" ID="e7d12495-a7a1-41a4-881c-fa15469a961a" SourceId="1" SourceUrl="http://localhost:8734/SimulatorWcfServices/DataExchangeService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ISAP.SimulatorWcfServices" />
+  <xs:element name="GetBranchOffices">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBranchOfficesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetBranchOfficesResult" nillable="true" type="q1:ArrayOfKeyValueOfstringstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBranchOfficesForErgonometerNL">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBranchOfficesForErgonometerNLResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="GetBranchOfficesForErgonometerNLResult" nillable="true" type="q2:Exception" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/ISAP.SimulatorWcfServices" minOccurs="0" name="offices" nillable="true" type="q3:ArrayOfIsapBranchOffice" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBranchOfficeByCode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="officeCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="simulatorIds" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="simulatorSoftwareName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="simulatorSoftwareVersion" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateBranchOfficeByCodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="UpdateBranchOfficeByCodeResult" nillable="true" type="q4:Exception" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CommissionNewCustomerSalesOrders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/ISAP.SimulatorWcfServices" minOccurs="0" name="orders" nillable="true" type="q5:ArrayOfCustomerOrderContract" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CommissionNewCustomerSalesOrdersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="CommissionNewCustomerSalesOrdersResult" nillable="true" type="q6:Exception" />
+        <xs:element minOccurs="0" name="processedOrdersCnt" type="xs:int" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="failedOrdersWithValidationErrors" nillable="true" type="q7:ArrayOfKeyValueOfCustomerOrderContractArrayOfstringvLQjQ7Pj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertLiegesimulatorCustomerDataBackup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="customerDataFolder" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="settingsFile" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="masterDataFolder" nillable="true" type="xs:base64Binary" />
+        <xs:element minOccurs="0" name="softwareName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="softwareVersion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="branchOfficeName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="branchOfficeCode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="isTestUpload" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertLiegesimulatorCustomerDataBackupResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="InsertLiegesimulatorCustomerDataBackupResult" nillable="true" type="q8:Exception" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrUpdateApplicationLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="locationIdentifier" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationName" nillable="true" type="xs:string" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ISAP.SimulatorWcfServices" minOccurs="0" name="deviceInfos" nillable="true" type="q9:ArrayOfDeviceInformationContract" />
+        <xs:element minOccurs="0" name="softwareName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="softwareVersion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="address_street" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="address_ZIP" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="address_location" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="address_country" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="phoneNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="teamViewerId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="teamViewerPassword" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrUpdateApplicationLocationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="CreateOrUpdateApplicationLocationResult" nillable="true" type="q10:Exception" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PostApplicationActivity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="locationIdentifier" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="locationName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="softwareName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="softwareVersion" nillable="true" type="xs:string" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/ISAP.SimulatorWcfServices" minOccurs="0" name="activityReport" nillable="true" type="q11:ApplicationActivityReportContract" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PostApplicationActivityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="PostApplicationActivityResult" nillable="true" type="q12:Exception" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

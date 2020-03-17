@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DataExchangeService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IDataExchangeService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ISAP.SimulatorWcfServices" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IDataExchangeService_GetBranchOffices_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBranchOffices" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_GetBranchOffices_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBranchOfficesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_GetBranchOfficesForErgonometerNL_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBranchOfficesForErgonometerNL" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_GetBranchOfficesForErgonometerNL_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBranchOfficesForErgonometerNLResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_UpdateBranchOfficeByCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBranchOfficeByCode" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_UpdateBranchOfficeByCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateBranchOfficeByCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_CommissionNewCustomerSalesOrders_InputMessage">
+    <wsdl:part name="parameters" element="tns:CommissionNewCustomerSalesOrders" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_CommissionNewCustomerSalesOrders_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CommissionNewCustomerSalesOrdersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_InsertLiegesimulatorCustomerDataBackup_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLiegesimulatorCustomerDataBackup" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_InsertLiegesimulatorCustomerDataBackup_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertLiegesimulatorCustomerDataBackupResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_CreateOrUpdateApplicationLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrUpdateApplicationLocation" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_CreateOrUpdateApplicationLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrUpdateApplicationLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_PostApplicationActivity_InputMessage">
+    <wsdl:part name="parameters" element="tns:PostApplicationActivity" />
+  </wsdl:message>
+  <wsdl:message name="IDataExchangeService_PostApplicationActivity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PostApplicationActivityResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDataExchangeService">
+    <wsdl:operation name="GetBranchOffices">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataExchangeService/GetBranchOffices" message="tns:IDataExchangeService_GetBranchOffices_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataExchangeService/GetBranchOfficesResponse" message="tns:IDataExchangeService_GetBranchOffices_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBranchOfficesForErgonometerNL">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataExchangeService/GetBranchOfficesForErgonometerNL" message="tns:IDataExchangeService_GetBranchOfficesForErgonometerNL_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataExchangeService/GetBranchOfficesForErgonometerNLResponse" message="tns:IDataExchangeService_GetBranchOfficesForErgonometerNL_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBranchOfficeByCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataExchangeService/UpdateBranchOfficeByCode" message="tns:IDataExchangeService_UpdateBranchOfficeByCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataExchangeService/UpdateBranchOfficeByCodeResponse" message="tns:IDataExchangeService_UpdateBranchOfficeByCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CommissionNewCustomerSalesOrders">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataExchangeService/CommissionNewCustomerSalesOrders" message="tns:IDataExchangeService_CommissionNewCustomerSalesOrders_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataExchangeService/CommissionNewCustomerSalesOrdersResponse" message="tns:IDataExchangeService_CommissionNewCustomerSalesOrders_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertLiegesimulatorCustomerDataBackup">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataExchangeService/InsertLiegesimulatorCustomerDataBackup" message="tns:IDataExchangeService_InsertLiegesimulatorCustomerDataBackup_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataExchangeService/InsertLiegesimulatorCustomerDataBackupResponse" message="tns:IDataExchangeService_InsertLiegesimulatorCustomerDataBackup_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrUpdateApplicationLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataExchangeService/CreateOrUpdateApplicationLocation" message="tns:IDataExchangeService_CreateOrUpdateApplicationLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataExchangeService/CreateOrUpdateApplicationLocationResponse" message="tns:IDataExchangeService_CreateOrUpdateApplicationLocation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PostApplicationActivity">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataExchangeService/PostApplicationActivity" message="tns:IDataExchangeService_PostApplicationActivity_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataExchangeService/PostApplicationActivityResponse" message="tns:IDataExchangeService_PostApplicationActivity_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IDataExchangeService" type="tns:IDataExchangeService">
+    <wsp:PolicyReference URI="#WSHttpBinding_IDataExchangeService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetBranchOffices">
+      <soap12:operation soapAction="http://tempuri.org/IDataExchangeService/GetBranchOffices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBranchOfficesForErgonometerNL">
+      <soap12:operation soapAction="http://tempuri.org/IDataExchangeService/GetBranchOfficesForErgonometerNL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateBranchOfficeByCode">
+      <soap12:operation soapAction="http://tempuri.org/IDataExchangeService/UpdateBranchOfficeByCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CommissionNewCustomerSalesOrders">
+      <soap12:operation soapAction="http://tempuri.org/IDataExchangeService/CommissionNewCustomerSalesOrders" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertLiegesimulatorCustomerDataBackup">
+      <soap12:operation soapAction="http://tempuri.org/IDataExchangeService/InsertLiegesimulatorCustomerDataBackup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrUpdateApplicationLocation">
+      <soap12:operation soapAction="http://tempuri.org/IDataExchangeService/CreateOrUpdateApplicationLocation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostApplicationActivity">
+      <soap12:operation soapAction="http://tempuri.org/IDataExchangeService/PostApplicationActivity" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataExchangeService">
+    <wsdl:port name="WSHttpBinding_IDataExchangeService" binding="tns:WSHttpBinding_IDataExchangeService">
+      <soap12:address location="http://localhost:8734/SimulatorWcfServices/DataExchangeService/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:8734/SimulatorWcfServices/DataExchangeService/</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

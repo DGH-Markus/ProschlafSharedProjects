@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B5D03F21-3F30-49F4-99BB-442A84B27BCA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimulatorInterfaces</RootNamespace>
+    <AssemblyName>SimulatorInterfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SimulatorInterfaces.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComLib, Version=1.0.0.0, Culture=neutral, PublicKeyToken=4b7390a30e645704, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\ComLib.dll</HintPath>
+    </Reference>
+    <Reference Include="NGmattAPI, Version=0.0.1.13, Culture=neutral, PublicKeyToken=f7ab353c20e1f3e9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\NGmattAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="PressureDeviceLib, Version=1.1.4.0, Culture=neutral, PublicKeyToken=ee1b24cd9b1fa8c0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\PressureDeviceLib.dll</HintPath>
+    </Reference>
+    <Reference Include="PressureNWDeviceLib">
+      <HintPath>..\LiegeSimulator\Libs\PressureNWDeviceLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivitiesStatusDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ActivitiesStatusDisplay.Designer.cs">
+      <DependentUpon>ActivitiesStatusDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CBaseSimulator.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="IStatusDisplayFunctions.cs" />
+    <Compile Include="LogEventClass.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatusDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatusDisplay.Designer.cs">
+      <DependentUpon>StatusDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StatusDisplayDummy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StatusDisplayDummy.Designer.cs">
+      <DependentUpon>StatusDisplayDummy.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ActivitiesStatusDisplay.resx">
+      <DependentUpon>ActivitiesStatusDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatusDisplay.resx">
+      <DependentUpon>StatusDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StatusDisplayDummy.resx">
+      <DependentUpon>StatusDisplayDummy.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libs\ComLib.dll" />
+    <Content Include="Libs\ComLib.pdb" />
+    <Content Include="Libs\ComLib.XML" />
+    <Content Include="Libs\NGmattAPI.dll" />
+    <Content Include="Libs\NGmattAPI.pdb" />
+    <Content Include="Libs\NGmattAPI.XML" />
+    <Content Include="Libs\PressureDeviceLib.dll" />
+    <Content Include="Libs\PressureDeviceLib.pdb" />
+    <Content Include="Libs\PressureDeviceLib.XML" />
+    <Content Include="Libs\PressureNWDeviceLib.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimulatorInterfaces.pfx" />
+    <None Include="SimulatorInterfacesKeyDebug.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

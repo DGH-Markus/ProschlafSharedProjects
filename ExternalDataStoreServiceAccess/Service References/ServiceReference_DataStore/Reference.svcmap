@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a972735f-f023-416c-a985-5a4ec8f34581" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://144.76.103.182:8733/DataStore/DatabaseServices/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="7824a15d-bf24-40e1-938f-48b338ab94de" SourceId="1" SourceUrl="http://144.76.103.182:8733/DataStore/DatabaseServices/mex" />
+    <MetadataFile FileName="Message.xsd" MetadataType="Schema" ID="585b020d-bbac-4583-853f-02cb44530d3a" SourceId="1" SourceUrl="http://144.76.103.182:8733/DataStore/DatabaseServices/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="9a170682-b064-4677-a484-4c5f356b372c" SourceId="1" SourceUrl="http://144.76.103.182:8733/DataStore/DatabaseServices/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="59fd36c0-a764-4dae-b780-b5681ddaf492" SourceId="1" SourceUrl="http://144.76.103.182:8733/DataStore/DatabaseServices/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="98bbacfd-2270-4760-a990-3c10c2e2bd95" SourceId="1" SourceUrl="http://144.76.103.182:8733/DataStore/DatabaseServices/mex" />
+    <MetadataFile FileName="System.ServiceModel.xsd" MetadataType="Schema" ID="60212917-735a-46ee-808c-3127feefd2be" SourceId="1" SourceUrl="http://144.76.103.182:8733/DataStore/DatabaseServices/mex" />
+    <MetadataFile FileName="System.xsd" MetadataType="Schema" ID="d9f1ba7f-68a7-4ea0-bf32-cb4a7244fef7" SourceId="1" SourceUrl="http://144.76.103.182:8733/DataStore/DatabaseServices/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

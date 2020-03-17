@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{517DFEE4-9A3A-43F0-9C90-12C8072041CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimulatorController</RootNamespace>
+    <AssemblyName>SimulatorController</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>SimulatorControllerKeyDebug.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PressureNWDeviceLib">
+      <HintPath>..\LiegeSimulator\Libs\PressureNWDeviceLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ConnectionsStatusDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectionsStatusDisplay.Designer.cs">
+      <DependentUpon>ConnectionsStatusDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetupMultipleSimulatorsWizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetupMultipleSimulatorsWizard.Designer.cs">
+      <DependentUpon>SetupMultipleSimulatorsWizard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Watchdog.cs" />
+    <Compile Include="SimulatorAssignmentsManager.cs" />
+    <Compile Include="ConnectedSimulatorStatusDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConnectedSimulatorStatusDisplay.Designer.cs">
+      <DependentUpon>ConnectedSimulatorStatusDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SimulatorControl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ngMattApiWrappers\ngMattApiWrappers\NgMattApiWrapper\NgMattApiWrapper.csproj">
+      <Project>{0440c5ea-b429-45ac-8c54-7ed591ac7493}</Project>
+      <Name>NgMattApiWrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logging\Logging\Logging.csproj">
+      <Project>{48b38968-7176-4bd0-912a-02f67fe17844}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SerialSimulatorServices\SerialSimulatorServices.csproj">
+      <Project>{daa59249-5fd6-4438-a1cd-3381fb00e1a2}</Project>
+      <Name>SerialSimulatorServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SimulatorInterfaces\SimulatorInterfaces.csproj">
+      <Project>{B5D03F21-3F30-49F4-99BB-442A84B27BCA}</Project>
+      <Name>SimulatorInterfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConnectionsStatusDisplay.resx">
+      <DependentUpon>ConnectionsStatusDisplay.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConnectedSimulatorStatusDisplay.resx">
+      <DependentUpon>ConnectedSimulatorStatusDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetupMultipleSimulatorsWizard.resx">
+      <DependentUpon>SetupMultipleSimulatorsWizard.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Libs\PressureNWDeviceLib.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimulatorControllerKey.pfx" />
+    <None Include="SimulatorControllerKeyDebug.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

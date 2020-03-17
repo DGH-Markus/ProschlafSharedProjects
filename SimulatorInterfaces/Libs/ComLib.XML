@@ -1,0 +1,1133 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ComLib</name>
+    </assembly>
+    <members>
+        <member name="T:ComLib.ComPort">
+            **********************************************************************************************
+            --- Klasse für Kommunikationsschnittstellen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898/// <summary>  
+            Beschreibung  : Klasse für die Kommunikation über verschiedene Schnittstellen.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="T:ComLib.ComTraffic">
+            **********************************************************************************************
+            --- Klasse für Kommunikationsschnittstellen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898/// <summary>  
+            Beschreibung  : Klasse für die Kommunikation über verschiedene Schnittstellen.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="T:ComLib.ComTelegramm">
+            **********************************************************************************************
+            --- Klasse für Telegrammbildung ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Abstracte Klasse für Telegrammbildung der Remoteschnittstelle.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTelegramm.OnComLibError(System.Object,ComLib.ErrorEventArgs)">
+            **********************************************************************************************
+            --- OnDevice Error Event ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 10.07.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Löst das DeviceError Event aus. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTelegramm.OnDeviceError(System.Object,System.EventArgs)">
+            **********************************************************************************************
+            --- OnDevice Error Event ---
+            **********************************************************************************************
+            Autor         : ZucR, Datum: 15.09.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Löst das DeviceErrorEvent aus.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTelegramm.OnNonComLibTelegramm(System.Object,ComLib.TelegrammEventArgs)">
+            ***************************************
+            Autor:  ZucR, Datum: 14.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Löst das NonComLibTelegramm Event aus.</summary><param name="Sender">
+            Parameter:       [Object] Sender - </param><param name="e">
+            Parameter:       [TelegrammEventArgs] e - </param>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTelegramm.OnDisconnect(System.Object,System.EventArgs)">
+            ***************************************
+            Autor:  HubW, Datum: 11.04.017, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Löst das OnDisconnect Event aus.</summary><param name="Sender">
+            Parameter:       [Object] Sender - </param>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTelegramm.BuildTelegramm(System.String)">
+            **********************************************************************************************
+            --- Telegramm Bilden ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Generiert aus dem Übergebenen String ein Telegramm fügt die Checksumme und einen 
+                            Zeilenumbruch ein. </summary><param name="strTelegramm">  
+            Parameter     : (String) strTelegramm  : Zu bearbeitender Kommando String </param><returns>
+            Rückgabe      : (String) strTelegramm  : Bearbeiteter Kommando String </returns>
+            Exceptions    : keine
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTelegramm.CheckTelegramm(System.String)">
+            **********************************************************************************************
+            --- Checksumme Überprüfen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Überprüft die Checksumme des übergebenen Strings und entfernt Sie. </summary> <param name="strTelegramm">  
+            Parameter     : (String) strTelegramm  : Zu bearbeitender Kommando String </param><returns>
+            Rückgabe      : (String) strTelegramm  : Bearbeiteter Kommando String </returns><exception cref="T:System.ArgumentException">
+            Exceptions    : ArgumentException : Input Kommandostring zu kurz</exception><exception cref="T:System.ArgumentException">
+            Exceptions    : ArgumentException : Telegramm beginnt nicht mit Startzeichen</exception><exception cref="T:System.ArgumentException">
+            Exceptions    : ArgumentException : Checksummen Fehler</exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTelegramm.strHex2Bin(System.String)">
+            **********************************************************************************************
+            --- Hex String to Bin ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Wandelt den String einer Hexadezimal Zahl in eine Dezimalzahl. </summary> <param name="HexString">
+            Parameter     : (String) HexString  : Zu bearbeitender Hexadezimal String </param><returns>
+            Rückgabe      : (int) value  : Dezimalzahl </returns> <exception cref="T:System.ArgumentException">
+            Exceptions    : ArgumentException : Inputstring null</exception>
+            **********************************************************************************************
+        </member>
+        <!-- Ungültiger XML-Kommentar wurde für den Member 'M:ComLib.ComTelegramm.BuildDataString(System.Object[])' ignoriert -->
+        <!-- Ungültiger XML-Kommentar wurde für den Member 'M:ComLib.ComTelegramm.GetDataFromString(System.Object[]@,System.String)' ignoriert -->
+        <member name="M:ComLib.ComTelegramm.SetKommVerlauf(System.String,System.Boolean)">
+            **********************************************************************************************
+            --- Kommunikations Verlauf setzen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Setzt einen KommandoString in die Verlaufsliste. Wenn bereits mehr als 50 Strings 
+                            in der Liste wird der älteste entfernt.</summary><param name="strKommando">
+            Parameter     : (String) strKommando  : zu speichernder Kommandostring </param><param name="bDirection">
+                            (bool) bDirection     : Transferrichtung false = out, true = in</param>
+            Rückgabe      : keine
+            Exceptions    : keine
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTelegramm.GetKommVerlauf">
+            **********************************************************************************************
+            --- Kommunikations Verlauf auslesen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Gibt pro Aufruf String des letzten Kommandos zurück. Wenn keine 
+                            Kommandos in der Verlaufsliste sind wird "" zurückgegeben</summary><returns>
+            Rückgabe      : (String) strVerlauf  : Nächster Zeile des Verlaufs </returns>
+            Exceptions    : keine
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComTelegramm.Connected">
+            **********************************************************************************************
+            --- Eigenschaft Verbindungsstatus ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Zeigt den Verbindungsstatus an.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComTelegramm.Checksumme">
+            **********************************************************************************************
+            --- Eigenschaft Checksumme ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Aktiviert bzw. Deaktiviert die Checksumme.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComTelegramm.WaitSteps">
+            **********************************************************************************************
+            --- Eigenschaft Waitsteps ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Reduziert die Prozessorlast während der Kommunikation. Verlangsamt die Kommunikation aber 
+                            auch. Standard: 1ms</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComTelegramm.Adresse">
+            **********************************************************************************************
+            --- Eigenschaft Adresse ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Setzen, Lesen der Adresse für die Kommunikation. Wenn nicht benützt -1. 
+                            Bereich: 0-255.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="T:ComLib.ComTelegramm.KommFlags">
+            ***************************************
+            Autor:  ZucR, Datum: 14.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Kommando Flags - Enumerator</summary>
+            ***************************************
+        </member>
+        <member name="T:ComLib.ComTelegramm.ErrorCodes">
+            ***************************************
+            Autor:  ZucR, Datum: 14.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Felercode-Enumerator</summary>
+            ***************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.SetComPort(System.String)">
+            **********************************************************************************************
+            --- Konstruktor für Netzwerk Kommunikation ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Erstellt ein Netzwerkport. </summary><param name="host">
+            Parameter     : (String) host  : Netzwerkname des Hostgeräts als String </param> 
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.SetComPort(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+            **********************************************************************************************
+            --- Konstruktor für Serielle Kommunikation ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Erstellt ein Serielles Port. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.setComPort(ComLib.ISchnittstellen)">
+            **********************************************************************************************
+            --- Festlegen des Ausgewählten Ports ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Legt die ausgewählte Schnittstelle für die Kommunikation fest. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.Read">
+            **********************************************************************************************
+            --- Daten einlesen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Liest einen String vom Port ein. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.Write(System.String)">
+            **********************************************************************************************
+            --- Daten schreiben ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Schreibt den Übergebenen String aufs Port. Dabei wird die Checksumme 
+                            erstellt und das Ende Zeichen eingefügt. </summary><param name="strOut">
+            Parameter     : (String) strOut  : Zu bearbeitender Kommando String </param>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.FastWrite(System.String)">
+            **********************************************************************************************
+            --- Daten schreiben ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Schreibt den Übergebenen String aufs Port. Dabei müssen die Checksumme 
+                            und das Ende Zeichen bereits eingefügt sein. </summary><param name="strOut">
+            Parameter     : (String) strOut  : Zu bearbeitender Kommando String </param>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.Connect">
+            **********************************************************************************************
+            --- Verbindung initialisieren ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Stellt eine Verbindung her. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.Connect(System.IO.Ports.SerialPort)">
+            **********************************************************************************************
+            --- Verbindung initialisieren ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Stellt eine Verbindung her. </summary><param name="serPort">
+            Parameter     : [SerialPort] serPort: Verweiß auf ein bereits geöffnetes Serielles Port</param>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.Connect(ComLib.ComTelegramm.CheckConnectionDelegate)">
+            **********************************************************************************************
+            --- Verbindung initialisieren ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Stellt eine Verbindung her. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.Disconnect">
+            **********************************************************************************************
+            --- Verbindung trennen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Trennt die Verbindung, wenn vorhanden. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComTraffic.Disconnect(System.Boolean)">
+            **********************************************************************************************
+            --- Verbindung trennen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Trennt die Verbindung, wenn vorhanden. Trennt das Comport nur wenn 
+                            DisconnectPort auf true ist. Sonst wird das Comport offengehalten um bei einer
+                            Verwendung des Comports von mehreren Geräten, die anderen Geräte nicht zu 
+                            unterbrechen</summary><param name="DisconnectPort">
+            Parameter     : [bool] DisconnectPort: Wenn true wird das Comport geschlossen, onst werden nur
+                            die Funktionen geschlossen</param>
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.WriteKommVerlauf">
+            ***************************************
+            Autor:  StaF, Datum: 10.07.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Eigenschaft die angibt ob der KommVerlauf Buffer geschrieben werden soll.</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.LogfileRingbuffer">
+            ***************************************
+            Autor:  ZucR, Datum: 15.07.2010, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Eigenschaft welche die Anzahl der Zeilen die sich im Ringpuffer befinden definiert. Minimalwert 1000</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.WriteLogfile">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Eigenschaft die angibt ob das Logfile geschrieben werden soll.</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.LogfileName">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Eigenschaft für den Name des Logfiles.</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.ASCIILogFile">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Eigenschaft die angibt ob die übergebenen Daten in ASCII Codes ausgegeben werden.</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.LogFileCharSeperator">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Eigenschaft die angibt welches Trennzeichen im ASCII Modus verwendet werden soll.</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.SerialComPortHandshake">
+            **********************************************************************************************
+            --- Eigenschaft Handshake ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 09.06.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Auswahl des Handshake der seriellen Schnittstelle.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.RS485HalfDuplexRTSSwitch">
+            **********************************************************************************************
+            --- Eigenschaft RTS Switch ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 25.07.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Aktivierung der RTS Umschaltung für Unidirektionale Kommunikation.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.KommandoTimeOut">
+            **********************************************************************************************
+            --- Eigenschaft Kommand Timeout ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 10.07.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Zeit für die Antwort auf ein Kommando bis ein Timeout auftritt in 100ms.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.CheckInputFlags">
+            ***************************************
+            Autor:  ZucR, Datum: 24.02.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Gibt an ob die Kommandoflags die von einem Gerät zurückkommen bei der 
+                            Kommandoabarbeitung überprüft werden sollen.</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.ComTraffic.SerialPort">
+            ***************************************
+            Autor:  ZucR, Datum: 24.02.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   liest das SerialPort.</summary>
+            ***************************************
+        </member>
+        <member name="M:ComLib.ComPort.Kommand(System.String,System.String,System.Boolean,System.Object[]@,System.Object[])">
+            **********************************************************************************************
+            --- Kommando ausführen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Führt ein Kommando aus. (Für Abwärtkompatibilität: Bei neuen Versionen bitte 
+                            nicht verwenden)  </summary> <param name="strOut">  
+            Parameter     : (String) strOut  : Zu bearbeitender Kommando String </param> <returns>
+            Rückgabe      : (String) strIn  : Empfangener Kommando String </returns> <exception cref="T:System.ArgumentException">
+            Exceptions    : ArgumentException : Synchron Kommando Timeout + strOut</exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.Kommand(System.String,System.String,System.Boolean,System.String@,System.String)">
+            **********************************************************************************************
+            --- Kommando ausführen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Führt ein Kommando aus und warte auf die Antwort. Für Abwärtkompatibilität: 
+                            Bei neuen Versionen bitte nicht verwenden) </summary> <param name="strOut">  
+            Parameter     : (String) strOut  : Zu bearbeitender Kommando String </param> <returns>
+            Rückgabe      : (String) strIn  : Empfangener Kommando String </returns> <exception cref="T:System.ArgumentException">
+            Exceptions    : ArgumentException : Synchron Kommando Timeout + strOut
+                            ArgumentException : Gerät nicht verbunden</exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.Kommand(System.String,System.String,ComLib.ComPort.KommandType,System.Object[]@,System.Object[])">
+            **********************************************************************************************
+            --- Kommando ausführen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Führt ein Kommando aus. </summary> <param name="strOut">  
+            Parameter     : (String) strOut  : Zu bearbeitender Kommando String </param> <returns>
+            Rückgabe      : (String) strIn  : Empfangener Kommando String </returns> <exception cref="T:System.ArgumentException">
+            Exceptions    : ArgumentException : Synchron Kommando Timeout + strOut</exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.Kommand(System.String,System.String,ComLib.ComPort.KommandType,System.String@,System.String)">
+            **********************************************************************************************
+            --- Kommando ausführen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Führt ein Kommando aus und warte auf die Antwort </summary> <param name="strOut">  
+            Parameter     : (String) strOut  : Zu bearbeitender Kommando String </param> <returns>
+            Rückgabe      : (String) strIn  : Empfangener Kommando String </returns> <exception cref="T:System.ArgumentException">
+            Exceptions    : ArgumentException : Synchron Kommando Timeout + strOut
+                            ArgumentException : Gerät nicht verbunden</exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.Kommand(System.String,System.String@)">
+            **********************************************************************************************
+            --- Kommando ausführen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Führt ein Kommando aus und warte auf die Antwort </summary> <param name="strOut">  
+            Parameter     : (String) strOut  : Zu bearbeitender Kommando String </param> <returns>
+            Rückgabe      : (String) strIn  : Empfangener Kommando String </returns> <exception cref="T:System.ArgumentException">
+            Exceptions    : ArgumentException : Synchron Kommando Timeout + strOut
+                            ArgumentException : Gerät nicht verbunden</exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.GetComLibProduktVersion">
+            **********************************************************************************************
+            --- Library Version auslesen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Gibt Version der Libery zurück. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.GetDeviceID">
+            **********************************************************************************************
+            --- Device ID auslesen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Gibt die Identifikationsnummer des Geräts aus. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.GetFirmwareVersion">
+            **********************************************************************************************
+            --- Firmware Version auslesen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Gibt Version der Firmware zurück. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.GetDeviceState">
+            **********************************************************************************************
+            --- GeräteStatus auslesen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Gibt den aktuellen Gerätestatus zurück. </summary>
+            **********************************************************************************************
+        </member>
+        <!-- Ungültiger XML-Kommentar wurde für den Member 'M:ComLib.ComPort.ResetDevice(System.Byte)' ignoriert -->
+        <member name="M:ComLib.ComPort.GetErrorDevice">
+            **********************************************************************************************
+            --- Geräte Fehler auslesen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 10.07.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Gibt die Fehler des Geräts zurück wenn vorhanden und löscht Ihn anschließend.
+                            Wenn keine Fehler mehr vorhanden wird ERROR_OK == 0x0000 zurückgegeben.</summary><returns>
+            Rückgabe      : (int) Error  : Nächster Fehler in Fehlerlist </returns>
+            Exceptions    : keine
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.AsyncAblaufCancel">
+            **********************************************************************************************
+            --- Asyncronen Ablauf abbrechen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 27.11.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Bricht das aktuelle Asyncrone Kommando ab </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.ComPort.GetDeviceError">
+            **********************************************************************************************
+            --- Reset Gerät ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 27.11.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : List die gesamte Fehlerliste des Geräts aus und übernimmt sie in die eigene. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComPort.KommandoRetries">
+            **********************************************************************************************
+            --- Eigenschaft KommandRetray ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 10.07.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Anzahl der Wiederholungen eines Kommandos bei einem Timeout der Antwort.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComPort.DisconnectOnReset">
+            **********************************************************************************************
+            --- Eigenschaft Disconnect on Reset ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 10.07.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Wenn True wird beim Divece Reset Kommando die Verbindung automatisch
+                            als Disconnect deklariert.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComPort.AsyncKommEnd">
+            **********************************************************************************************
+            --- Eigenschaft Asyncrones Kommando Kommunikations Ende ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 10.07.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Zeigt an ob ein asyncrones Kommando abgeschlossen wurde; lesen</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.ComPort.AsyncKommStarted">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Zeigt an ob ein asynchrones Komando gestartet wurde; lesen</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.ComPort.IsNoAnswer">
+            ***************************************
+            Autor:  ZucR, Datum: 17.03.2014, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Gibt an das der Connection_Lost Fehler zurückgegeben werden soll</summary>
+            ***************************************
+        </member>
+        <member name="T:ComLib.ComPort.KommandType">
+            **********************************************************************************************
+            --- Enumeration für den Kommando Type ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Kommando Type.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="T:ComLib.ErrorEventArgs">
+            ****************************************
+            Autor:  ZucR, Datum: 09.09.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Fehler EventArgument</summary>
+            ****************************************
+        </member>
+        <member name="M:ComLib.ErrorEventArgs.#ctor">
+            ****************************************
+            Autor:  ZucR, Datum: 09.09.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Standardkonstruktor</summary>
+            ****************************************
+        </member>
+        <member name="M:ComLib.ErrorEventArgs.#ctor(System.Int32)">
+            ****************************************
+            Autor:  ZucR, Datum: 09.09.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Initialisierungskonstruktor</summary><param name="nErrorCode">
+            Parameter:      [int] nErrorCode - Fehlercode der gesetzt werden soll.</param>
+            ****************************************
+        </member>
+        <member name="M:ComLib.ErrorEventArgs.#ctor(System.Int32,System.String)">
+            ****************************************
+            Autor:  ZucR, Datum: 28.10.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Initialisierungskonstruktor</summary><param name="nErrorCode">
+            Parameter:      [int] nErrorCode - Fehlercode</param><param name="nKommando">
+            Parameter:      [string] nKommando - Kommando bei dem der Fehler aufgetreten ist</param>
+            ****************************************
+        </member>
+        <member name="P:ComLib.ErrorEventArgs.ErrorCode">
+            ****************************************
+            Autor:  ZucR, Datum: 09.09.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Eigenschaft die den Fehlercode liest.</summary>
+            ****************************************
+        </member>
+        <member name="P:ComLib.ErrorEventArgs.Kommando">
+            ****************************************
+            Autor:  ZucR, Datum: 28.10.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Eigenschaft die das Kommando enthält bei dem der Fehler aufgetreten ist.</summary>
+            ****************************************
+        </member>
+        <member name="T:ComLib.TelegrammEventArgs">
+            ****************************************
+            Autor:  ZucR, Datum: 14.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Non Kommando Telegramm EventArgument</summary>
+            ****************************************
+        </member>
+        <member name="M:ComLib.TelegrammEventArgs.#ctor">
+            ****************************************
+            Autor:  ZucR, Datum: 14.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Standardkonstruktor</summary>
+            ****************************************
+        </member>
+        <member name="M:ComLib.TelegrammEventArgs.#ctor(System.Collections.Generic.List{System.String})">
+            ****************************************
+            Autor:  ZucR, Datum: 14.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Initialisierungkonstruktor</summary><param name="nList">
+            Parameter:      [List{string}] nList - Liste mit Telegrammen</param>
+            ****************************************
+        </member>
+        <member name="M:ComLib.TelegrammEventArgs.#ctor(System.String[])">
+            ****************************************
+            Autor:  ZucR, Datum: 14.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Initialisierungkonstruktor</summary><param name="nList">
+            Parameter:      [string[]] nList - Liste mit Telegrammen</param>
+            ****************************************
+        </member>
+        <member name="P:ComLib.TelegrammEventArgs.List">
+            ****************************************
+            Autor:  ZucR, Datum: 14.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   </summary>
+            ****************************************
+        </member>
+        <member name="T:ComLib.ISchnittstellen">
+            **********************************************************************************************
+            --- Interface für Kommunikationsschnittstellen  ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Interface für die Kommunikationsschnittstellen. Alle Schnitstellen müssen
+                            das Folgende Interface implementieren.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="T:ComLib.Logfile">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Klasse die ein Logfile (Logfile.txt) in dem Ordner erstellt in dem die DLL liegt.</summary>
+            ***************************************
+        </member>
+        <member name="M:ComLib.Logfile.WriteToLogfile(System.String,System.Boolean)">
+            ***************************************
+            Autor:  ZucR, Datum: 17.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Schreibt die übergebene Zeile ins Logfile. </summary><param name="strLine">
+            Parameter:      [string] strLine - String der in das Logfile geschrieben werden soll.</param><param name="bOut">
+            Parameter:      [bool] bOut - true wenn es sich um eine Ausgabe handelt, false wenn es sich um eine Eingabe handelt</param>
+            ***************************************
+        </member>
+        <member name="M:ComLib.Logfile.Open">
+            ***************************************
+            Autor:  ZucR, Datum: 17.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Versucht das Logfile zu öffnen / erstellt es.</summary><returns>
+            Rückgabe:       [bool] - true wenn geschrieben werden kann, false wenn die Initialisiserung nicht funktioniert hat.</returns>
+            ***************************************
+        </member>
+        <member name="M:ComLib.Logfile.Close">
+            ***************************************
+            Autor:  ZucR, Datum: 17.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Gibt die verwendeten Ressourcen frei / schließt das Logfile</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.Logfile.WriteLogfile">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Eigenschaft die angibt ob das Logfile geschrieben werden soll.</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.Logfile.LogfileName">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Eigenschaft für den Name des Logfiles.</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.Logfile.ASCIILogFile">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Eigenschaft die angibt ob die übergebenen Daten in ASCII Codes ausgegeben werden.</summary>
+            ***************************************
+        </member>
+        <member name="P:ComLib.Logfile.LogFileCharSeperator">
+            ***************************************
+            Autor:  ZucR, Datum: 18.04.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Eigenschaft die angibt welches Trennzeichen im ASCII Modus verwendet werden soll.</summary>
+            **********s*****************************
+        </member>
+        <member name="P:ComLib.Logfile.LogFileLineCount">
+            ***************************************
+            Autor:  ZucR, Datum: 15.07.2010, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Eigenschaft welche die größe des Ringpuffers begrenzt. Minimalwert: 1000</summary>
+            ***************************************
+        </member>
+        <member name="T:ComLib.NetzwerkComPort">
+            **********************************************************************************************
+            --- Klasse für Telegrammbildung Bilden ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Klasse für die Kommunikation übers Netzwerkport.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.NetzwerkComPort.#ctor(System.String)">
+            **********************************************************************************************
+            --- Konstruktor ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Konstruktor für die Klasse nimmt den Namen des Host als Parameter auf. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.NetzwerkComPort.ComLib#ISchnittstellen#Read">
+            **********************************************************************************************
+            --- Daten einlesen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Liest einen String vom Port ein. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.NetzwerkComPort.ComLib#ISchnittstellen#Write(System.String)">
+            **********************************************************************************************
+            --- Daten schreiben ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Schreibt den Übergebenen String aufs Port. Dabei wird die Checksumme 
+                            erstellt und das Ende Zeichen eingefügt. </summary><param name="strOut">
+            Parameter     : (String) strOut  : Zu bearbeitender Kommando String </param>
+            Rückgabe      : keine
+            Exceptions    : keine
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.NetzwerkComPort.ComLib#ISchnittstellen#Connect">
+            **********************************************************************************************
+            --- Verbindung initialisieren ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Stellt eine Verbindung mit der Netwerkschnittstelle her. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.NetzwerkComPort.ComLib#ISchnittstellen#Disconnect">
+            **********************************************************************************************
+            --- Verbindung trennen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Trennt die Verbindung, wenn vorhanden. </summary>
+            Exceptions    : keine
+            **********************************************************************************************
+        </member>
+        <member name="T:ComLib.SerialComPort">
+            **********************************************************************************************
+            --- Klasse für die Kommunikation übers Serielleport. ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>  
+            Beschreibung  : Klasse für die Kommunikation übers Serielle Port.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.SerialComPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+            **********************************************************************************************
+            --- Konstruktor ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Konstruktor für die Klasse nimmt als Parameter alle Comport Parameter auf. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.SerialComPort.#ctor">
+            **********************************************************************************************
+            --- Konstruktor ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Konstruktor für die Klasse ohne Parameter für übergabe eines bereits vorhandenen
+                            Serial Com Ports. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.SerialComPort.ComLib#ISchnittstellen#Read">
+            **********************************************************************************************
+            --- Daten einlesen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Liest einen String vom Port ein. </summary>
+            Parameter     : keine <returns>
+            Rückgabe      : (String) : Eingelesener String.</returns>
+            Exceptions    : keine
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.SerialComPort.ComLib#ISchnittstellen#Write(System.String)">
+            **********************************************************************************************
+            --- Daten schreiben ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 14.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Schreibt den Übergebenen String aufs Port.</summary><param name="strOut">
+            Parameter     : (String) strOut  : Zu bearbeitender Kommando String </param>
+            Rückgabe      : keine
+            Exceptions    : keine
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.SerialComPort.ComLib#ISchnittstellen#Connect">
+            **********************************************************************************************
+            --- Verbindung initialisieren ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Stellt eine Verbindung mit der Seriellen Schnittstelle her. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:ComLib.SerialComPort.ComLib#ISchnittstellen#Disconnect">
+            **********************************************************************************************
+            --- Verbindung trennen ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Trennt die Verbindung, wenn vorhanden. </summary>
+            Exceptions    : keine
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.SerialComPort.SerialPort">
+            **********************************************************************************************
+            --- Interne Eigenschaft SerialPort ---
+            **********************************************************************************************
+            Autor         : ZucR, Datum: 10.01.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+            Beschreibung  : Ermöglicht Zugriff auf das serielle Port, zum Setzen des Eventhandlers des 
+                            DataReceived Ereignisses</summary>
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.SerialComPort.SerialComPortHandshake">
+            **********************************************************************************************
+            --- Eigenschaft Handshake ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 09.06.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Auswahl des Handshake der seriellen Schnittstelle.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.SerialComPort.RS485HalfDuplexRTSSwitch">
+            **********************************************************************************************
+            --- Eigenschaft RTS Switch ---
+            **********************************************************************************************
+            Autor         : Staf, Datum: 25.07.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+            Beschreibung  : Aktivierung der RTS Umschaltung für Unidirektionale Kommunikation.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.SerialComPort.ReadTimeout">
+            **********************************************************************************************
+            --- Eigenschaft ReadTimeout ---
+            **********************************************************************************************
+            Autor         : ZucR, Datum: 16.09.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>
+            Beschreibung  : Eigenschaft die das LeseTimeout der seriellen Schnittstelle setzt / liest. 
+                            Wird beim Connect() übernommen.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="P:ComLib.SerialComPort.WriteTimeout">
+            **********************************************************************************************
+            --- Eigenschaft WriteTimeout ---
+            **********************************************************************************************
+            Autor         : ZucR, Datum: 16.09.08, Compiler: VS C# 2005   77906-113-3000004-41898 <summary>
+            Beschreibung  : Eigenschaft die das SchreibTimeout der seriellen Schnittstelle setzt / liest. 
+                            Wird beim Connect() übernommen.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="F:ComLib.USBUtils.DIGCF_PRESENT">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Gibt nur devices zurück die momentan im system verfügbar sind.</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.DIGCF_ALLCLASSES">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Gibt eine Liste mit allen installierten devices für alle device setup
+                          Klassen oder alle device interface Klassen zurück.</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.DIGCF_DEVICEINTERFACE">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Gibt Geräte zurück die device interfaces für die angegebenen device interface 
+                          Klassen unterstützen. Dieses Flag muss gesetzt werden, wenn der Enumerator 
+                          Parameter eine dwevice instance ID angibt.</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.WM_DEVICECHANGE">
+            <summary>Windows message sent when a device is inserted or removed</summary>
+        </member>
+        <member name="F:ComLib.USBUtils.DEVICE_ARRIVAL">
+            <summary>WParam for above : A device was inserted</summary>
+        </member>
+        <member name="F:ComLib.USBUtils.DEVICE_REMOVECOMPLETE">
+            <summary>WParam for above : A device was removed</summary>
+        </member>
+        <member name="M:ComLib.USBUtils.SetupDiGetClassDevs(System.Guid@,System.Int32,System.IntPtr,System.Int32)">
+            Quelle: http://msdn.microsoft.com/en-us/library/ms792959.aspx
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Diese Funktion erstellt ein Handle auf ein DeviceInfoSet das die angeforderten 
+                            device Informationen für den lokalen PC enthält.</summary><param name="ClassGuid">
+            Parameter:      [ref Guid] ClassGuid - GUID einer device setup class oder einer device interface class. optional</param><param name="Enumerator">
+            Parameter:      [int] Enumerator - optional
+                            A pointer to a NULL-terminated string that specifies:
+                                * An identifier (ID) of a Plug and Play (PnP) enumerator. This ID can either be the value’s globally unique identifier (GUID) or symbolic name. For example, “PCI” can be used to specify the PCI PnP value. Other examples of symbolic names for PnP values include “USB,” “PCMCIA,” and “SCSI”.
+                                * A PnP device instance ID. When specifying a PnP device instance ID, DIGCF_DEVICEINTERFACE must be set in the Flags parameter.
+                                This pointer is optional and can be NULL. If an enumeration value is not used to select devices, set Enumerator to NULL </param><param name="hwndParent">
+            Parameter:      [IntPtr] hwndParent - optional
+                            A handle to the top-level window to be used for a user interface that is associated with installing a device instance in the device information set. This handle is optional and can be NULL</param><param name="Flags">
+            Parameter:      [int] Flags - Filtert die Elemente welche ins DeviceInfoSet eingetragen werden.
+                            A variable of type DWORD that specifies control options that filter the device information elements that are added to the device information set. This parameter can be a bitwise OR of zero or more of the following flags. For more information about combining these flags, see the following Comments section.
+                            DIGCF_ALLCLASSES
+                                Return a list of installed devices for all device setup classes or all device interface classes. 
+                            DIGCF_DEVICEINTERFACE
+                                Return devices that support device interfaces for the specified device interface classes. This flag must be set in the Flags parameter if the Enumerator parameter specifies a device instance ID.
+                            DIGCF_DEFAULT
+                                Return only the device that is associated with the system default device interface, if one is set, for the specified device interface classes. 
+                            DIGCF_PRESENT
+                                Return only devices that are currently present in a system. 
+                            DIGCF_PROFILE
+                                Return only devices that are a part of the current hardware profile. </param><returns>
+            Rückgabe:       [IntPtr] - gibt ein Handle auf die erstellte DeviceInfo Liste zurück oder -1 (INVALID HANDLE VALUE)</returns>
+            ***************************************
+        </member>
+        <member name="M:ComLib.USBUtils.SetupDiDestroyDeviceInfoList(System.IntPtr)">
+            Quelle: http://msdn.microsoft.com/en-us/library/ms792991.aspx
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Diese Funktion löscht das device information set und gibt den damit 
+                            verbundenen Speicher wieder frei.</summary><param name="hDevInfo">
+            Parameter:      [IntPtr] hDevInfo - Handle auf das DeviceInfoSet das zerstört werden soll.</param><returns>
+            Rückgabe:       [bool] - true wenn das DeviceInfoSet erfolgreich zerstört wurde, false wenn nicht
+                            wenn es nicht zerstört werden konnte kann der Fehler mit GetLastError() ausgelesen werden</returns>
+            ***************************************
+        </member>
+        <member name="M:ComLib.USBUtils.SetupDiEnumDeviceInterfaces(System.IntPtr,System.IntPtr,System.Guid@,System.UInt32,ComLib.USBUtils.SP_DEVICE_INTERFACE_DATA@)">
+            Quelle: http://msdn.microsoft.com/en-us/library/ms791242.aspx
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Enumeriert die device interfaces die in einem device information set enthalten sind.</summary><param name="hDevInfo">
+            Parameter:      [IntPtr] hDevInfo - Referenz auf das device information set für dessen Elemente Informationen zurückgegeben 
+                            werden sollen.</param><param name="devInfo">
+            Parameter:      [IntPtr] devInfo - A pointer to an SP_DEVINFO_DATA structure that specifies a device information element in DeviceInfoSet. 
+                            This parameter is optional and can be NULL. If this parameter is specified, SetupDiEnumDeviceInterfaces 
+                            constrains the enumeration to the interfaces that are supported by the specified device. If this parameter 
+                            is NULL, repeated calls to SetupDiEnumDeviceInterfaces return information about the interfaces that are 
+                            associated with all the device information elements in DeviceInfoSet. This pointer is typically returned 
+                            by SetupDiEnumDeviceInfo.</param><param name="interfaceClassGuid">
+            Parameter:      [ref Guid] interfaceClassGuid - Referenz auf die Guid die das gesuchte device interface 
+                            spezifiziert</param><param name="memberIndex">
+            Parameter:      [uint] memberIndex - nullbasierender Index innerhalb der Interfaces des device information set. 
+                            Der Aufrufer sollte diesen Parameter inkrementieren (beginnend bei 0) bis die Funktion 
+                            fehlschlägt und GetLastError ERROR_NO_MORE_ITEMS zurückgibt.</param><param name="deviceInterfaceData">
+            Parameter:      [ref SP_DEVICE_INTERFACE_DATA] deviceInterfaceData - Referenz auf eine SP_DEVICE_INTERFACE_DATA 
+                            Struktur, welche bei erfolgreichem Durchlauf der Funktion das den Suchparametern entspricht enthält.
+                            Der Aufrufer muss DeviceInterfaceData.cbSize auf sizeof(SP_DEVICE_INTERFACE_DATA) setzen bevor 
+                            die Funktion aufgerufen wird.</param><returns>
+            Rückgabe:       [bool] - true wenn die Funktion erfolgreich ausgeführt wird, false wenn nicht (GetErrorList())</returns>
+            ***************************************
+        </member>
+        <member name="M:ComLib.USBUtils.SetupDiGetDeviceInterfaceDetail(System.IntPtr,ComLib.USBUtils.SP_DEVICE_INTERFACE_DATA@,ComLib.USBUtils.SP_DEVICE_INTERFACE_DETAIL_DATA@,System.Int32,System.Int32@,ComLib.USBUtils.SP_DEVINFO_DATA@)">
+            Quelle: http://msdn.microsoft.com/en-us/library/ms792901.aspx
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Ermittelt Details über ein device interface.</summary><param name="hDevInfo">
+            Parameter:      [IntPtr] hDevInfo - Handle auf ein DeviceInfoSet welches das interface enthält von 
+                            dem Details ermittelt werden sollen. SetupDiGetClassDevs()</param><param name="deviceInterfaceData">
+            Parameter:      [ref SP_DEVICE_INTERFACE_DATA] deviceInterfaceData - Referenz auf eine SP_DEVICE_INTERFACE_DATA 
+                            Struktur welche das interface dessen Details ermittelt werden sollen enthält. SetupDiEnumDeviceInterfaces()</param><param name="deviceInterfaceDetailData">
+            Parameter:      [ref SP_DEVICE_INTERFACE_DETAIL_DATA] deviceInterfaceDetailData - Referenz auf eine DEVICE_INTERFACE_DETAIL_DATA
+                            Struktur für den Empfang von Informationen über das angegebene interface. Dieser Parameter ist optional und 
+                            kann auch null sein. Wenn der Parameter angegeben wird, muss der Aufrufer SP_DEVICE_INTERFACE_DETAIL_DATA.cbSize
+                            auf die Größe der Struktur setzen. cbSize beinhaltet immer die Größe des fixen Teils der Struktur jedoch nicht 
+                            die Größe des variablen strings an dessen Ende.</param><param name="deviceInterfaceDetailDataSize">
+            Parameter:      [UInt32] deviceInterfaceDetailDataSize - Spezifiziert die Größe des DeviceInterfaceDetailData buffer.
+                            Der Puffer muss zumindest (offsetof(SP_DEVICE_INTERFACE_DETAIL_DATA, DevicePath) + sizeof(TCHAR)) bytes
+                            groß sein um den fixen Teil der Struktur und ein NULL zum Beenden eines leeren MULTI_SZ strings 
+                            beinhalten zu können. Dieser Parameter muss 0 sein wenn DeviceInterfaceDetailData NULL ist.</param><param name="requiredSize">
+            Parameter:      [out int] requiredSize - Referenz auf eine Variable in der die benötigte Größe des 
+                            DeviceInterfaceDetailData buffer gespeichert wird. Diese Größe beinhaltet den fixen Teil der 
+                            Struktur und die Anzahl der Bytes die für den variablen device Pfad string benötigt wird.
+                            Dieser Parameter ist optional und kann NULL sein.</param><param name="deviceInfoData">
+            Parameter:      [ref SP_DEVINFO_DATA] deviceInfoData - Referenz auf einen Puffer der die Informationen über 
+                            das device des abgefragten Interface erhält. Der Aufrufer muss SP_DEVINFO_DATA.cbSize auf 
+                            die Größe der Struktur (sizeof(SP_DEVINFO_DATA))setzen. Dieser Parameter ist optional und kann NULL sein.</param><returns>
+            Rückgabe:       [bool] - true wenn die Funktion ohne Fehler abläuft, ansonsten wird false zurückgegeben und der Fehler kann 
+                            per GetLastError() ausgelesen werden</returns>
+            ***************************************
+        </member>
+        <member name="M:ComLib.USBUtils.SetupDiGetDeviceRegistryProperty(System.IntPtr,ComLib.USBUtils.SP_DEVINFO_DATA@,System.UInt32,System.UInt32@,System.IntPtr,System.UInt32,System.UInt32@)">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            The SetupDiGetDeviceRegistryProperty function retrieves the specified device property.
+            This handle is typically returned by the SetupDiGetClassDevs or SetupDiGetClassDevsEx function.</summary><param Name="DeviceInfoSet">
+            Handle to the device information set that contains the interface and its underlying device.</param><param Name="DeviceInfoData">
+            Pointer to an SP_DEVINFO_DATA structure that defines the device instance.</param><param Name="Property">
+            Device property to be retrieved. SEE MSDN</param><param Name="PropertyRegDataType">
+            Pointer to a variable that receives the registry data Type. This parameter can be NULL.</param><param Name="PropertyBuffer">
+            Pointer to a buffer that receives the requested device property.</param><param Name="PropertyBufferSize">
+            Size of the buffer, in bytes.</param><param Name="RequiredSize">
+            Pointer to a variable that receives the required buffer size, in bytes. This parameter can be NULL.</param><returns>
+            If the function succeeds, the return value is nonzero.</returns>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.CDC_GUID">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Guid der Microchip CDC-RS232 (via USB)</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.CDC_VID">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: USB Vendor ID der Microchip CDC-RS232 (via USB)</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.CDC_PID">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: USB Product ID der Microchip CDC-RS232 (via USB)</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.UHPG3_GUID">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Guid des UHPG3 (M4 G3)</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.UHPG3_VID">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: USB Vendor ID des UHPG3 (M4 G3)</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.UHPG3_PID">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: USB Product ID des UHPG3 (M4 G3)</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.UI1445LE_GUID">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Guid der UI-1445LE</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.UI1445LE_VID">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: USB Vendor ID der UI-1445LE</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.UI1445LE_PID">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: USB Product ID der UI-1445LE</summary>
+            ***************************************
+        </member>
+        <member name="M:ComLib.USBUtils.ContainsGuidVidPid(System.Guid,System.UInt32,System.UInt32)">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Prüft ob das angegebene Gerät im System vorhanden ist und gibt die Anzahl der gefundenen Geräte zurück.</summary><param name="devGuid">
+            Parameter:      [Guid] devGuid - Guid der Geräteklasse die gesucht werden soll.</param><param name="VendorID">
+            Parameter:      [uint] uiVendorID - Vendor ID des USB Geräts das gesucht werden soll.</param><param name="ProductID">
+            Parameter:      [uint] uiProductID - Product ID des Geräts das gesucht werden soll.</param><returns>
+            Rückgabe:       [int] - Gibt die Anzahl der gefundenen Geräte zurück od. -1 wenn die Geräteklasse nicht gefunden wurde.</returns>
+            ***************************************
+        </member>
+        <member name="M:ComLib.USBUtils.GetFriendlyNamesByGuidVidPid(System.Guid,System.UInt32,System.UInt32)">
+            ***************************************
+            Autor:  ZucR, Datum: 20.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Ermittelt den FriendlyName der durch Guid, VID und PID definierten Geräte und gibt sie 
+                            als List{string} zurück.</summary><param name="devGuid">
+            Parameter:      [Guid] devGuid - Guid Nummer der gesuchten Geräteklasse.</param><param name="uiVendorID">
+            Parameter:      [uint] uiVendorID - Vendor ID des USB Geräts das gesucht werden soll.</param><param name="uiProductID">
+            Parameter:      [uint] uiProductID - Product ID des USb Geräts das gesucht werden soll.</param><returns>
+            Rückgabe:       [List{string}] - Liste mit den FriendlyNames der gefundenen Geräte.</returns>
+            ***************************************
+        </member>
+        <member name="T:ComLib.USBUtils.SP_DEVINFO_DATA">
+            Quelle: http://pinvoke.net/default.aspx/Structures/SP_DEVINFO_DATA.html
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   </summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVINFO_DATA.cbSize">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   </summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVINFO_DATA.ClassGuid">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   </summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVINFO_DATA.DevInst">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   </summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVINFO_DATA.Reserved">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   </summary>
+            ***************************************
+        </member>
+        <member name="T:ComLib.USBUtils.SP_DEVICE_INTERFACE_DATA">
+            Quelle: http://pinvoke.net/default.aspx/Structures/SP_DEVICE_INTERFACE_DATA.html
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Eine DeviceInterface Struktur definiert ein device interface in einem 
+                          DeviceInformationSet</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVICE_INTERFACE_DATA.cbSize">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Größe der Struktur in Bytes</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVICE_INTERFACE_DATA.interfaceClassGuid">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: GUID der device interface Klasse zu der das Device gehört.</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVICE_INTERFACE_DATA.flags">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Können eine oder mehrere der DeviceInterfaceDataFlags sein.</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVICE_INTERFACE_DATA.reserved">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: reserviert, nicht benützen</summary>
+            ***************************************
+        </member>
+        <member name="T:ComLib.USBUtils.SP_DEVICE_INTERFACE_DETAIL_DATA">
+            Quelle: http://msdn.microsoft.com/en-us/library/ms793116.aspx
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Struktur welche den Pfad eines device interface beinhaltet.</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVICE_INTERFACE_DETAIL_DATA.cbSize">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: The size, in bytes, of the SP_DEVICE_INTERFACE_DETAIL_DATA structure.</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.SP_DEVICE_INTERFACE_DETAIL_DATA.devicePath">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: A NULL-terminated string that contains the device interface path. This path 
+                          can be passed to Win32 functions such as CreateFile. </summary>
+            ***************************************
+        </member>
+        <member name="T:ComLib.USBUtils.DeviceInterfaceDataFlags">
+            Quelle: http://www.pinvoke.net/default.aspx/Constants/SPINT_.html
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Flags Werte der DEVICE_INTERFACE_DATA Struktur</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.DeviceInterfaceDataFlags.Active">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: The interface is active (enabled).</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.DeviceInterfaceDataFlags.Default">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: The interface is the default interface for the device class.</summary>
+            ***************************************
+        </member>
+        <member name="F:ComLib.USBUtils.DeviceInterfaceDataFlags.Removed">
+            ***************************************
+            Autor:  ZucR, Datum: 16.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: The interface is removed. </summary>
+            ***************************************
+        </member>
+        <member name="T:ComLib.USBUtils.SPDRP">
+            ***************************************
+            Autor:  ZucR, Datum: 19.10.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Enumerator für SetupDiGetDeviceRegistryProperty</summary>
+            ***************************************
+        </member>
+    </members>
+</doc>

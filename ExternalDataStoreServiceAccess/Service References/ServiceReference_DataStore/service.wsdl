@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DatabaseServicesImplementation" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="DB_unsecured_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="DB_msgAnonymousSecured_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SymmetricBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:ProtectionToken>
+              <wsp:Policy>
+                <sp:SecureConversationToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+                  <wsp:Policy>
+                    <sp:RequireDerivedKeys />
+                    <sp:BootstrapPolicy>
+                      <wsp:Policy>
+                        <sp:SignedParts>
+                          <sp:Body />
+                          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+                          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+                        </sp:SignedParts>
+                        <sp:EncryptedParts>
+                          <sp:Body />
+                        </sp:EncryptedParts>
+                        <sp:SymmetricBinding>
+                          <wsp:Policy>
+                            <sp:ProtectionToken>
+                              <wsp:Policy>
+                                <mssp:SslContextToken sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient" xmlns:mssp="http://schemas.microsoft.com/ws/2005/07/securitypolicy">
+                                  <wsp:Policy>
+                                    <sp:RequireDerivedKeys />
+                                    <mssp:RequireClientCertificate />
+                                  </wsp:Policy>
+                                </mssp:SslContextToken>
+                              </wsp:Policy>
+                            </sp:ProtectionToken>
+                            <sp:AlgorithmSuite>
+                              <wsp:Policy>
+                                <sp:Basic256 />
+                              </wsp:Policy>
+                            </sp:AlgorithmSuite>
+                            <sp:Layout>
+                              <wsp:Policy>
+                                <sp:Strict />
+                              </wsp:Policy>
+                            </sp:Layout>
+                            <sp:IncludeTimestamp />
+                            <sp:EncryptSignature />
+                            <sp:OnlySignEntireHeadersAndBody />
+                          </wsp:Policy>
+                        </sp:SymmetricBinding>
+                        <sp:Wss11>
+                          <wsp:Policy />
+                        </sp:Wss11>
+                        <sp:Trust10>
+                          <wsp:Policy>
+                            <sp:MustSupportIssuedTokens />
+                            <sp:RequireClientEntropy />
+                            <sp:RequireServerEntropy />
+                          </wsp:Policy>
+                        </sp:Trust10>
+                      </wsp:Policy>
+                    </sp:BootstrapPolicy>
+                  </wsp:Policy>
+                </sp:SecureConversationToken>
+              </wsp:Policy>
+            </sp:ProtectionToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+            <sp:IncludeTimestamp />
+            <sp:EncryptSignature />
+            <sp:OnlySignEntireHeadersAndBody />
+          </wsp:Policy>
+        </sp:SymmetricBinding>
+        <sp:Wss11 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy />
+        </sp:Wss11>
+        <sp:Trust10 xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:MustSupportIssuedTokens />
+            <sp:RequireClientEntropy />
+            <sp:RequireServerEntropy />
+          </wsp:Policy>
+        </sp:Trust10>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="DB_msgAnonymousSecured_UploadDatabaseFile_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="BranchOfficeCode" Namespace="http://tempuri.org/" />
+          <sp:Header Name="BranchOfficeName" Namespace="http://tempuri.org/" />
+          <sp:Header Name="FileName" Namespace="http://tempuri.org/" />
+          <sp:Header Name="IsTestUpload" Namespace="http://tempuri.org/" />
+          <sp:Header Name="Length" Namespace="http://tempuri.org/" />
+          <sp:Header Name="SimulatorDeviceIds" Namespace="http://tempuri.org/" />
+          <sp:Header Name="SimulatorSoftwareName" Namespace="http://tempuri.org/" />
+          <sp:Header Name="SimulatorSoftwareVersion" Namespace="http://tempuri.org/" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="BranchOfficeCode" Namespace="http://tempuri.org/" />
+          <sp:Header Name="BranchOfficeName" Namespace="http://tempuri.org/" />
+          <sp:Header Name="FileName" Namespace="http://tempuri.org/" />
+          <sp:Header Name="IsTestUpload" Namespace="http://tempuri.org/" />
+          <sp:Header Name="Length" Namespace="http://tempuri.org/" />
+          <sp:Header Name="SimulatorDeviceIds" Namespace="http://tempuri.org/" />
+          <sp:Header Name="SimulatorSoftwareName" Namespace="http://tempuri.org/" />
+          <sp:Header Name="SimulatorSoftwareVersion" Namespace="http://tempuri.org/" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="DB_msgAnonymousSecured_UploadDatabaseFile_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Exception" Namespace="http://tempuri.org/" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Exception" Namespace="http://tempuri.org/" />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="DB_msgAnonymousSecured_TestConnection_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="DB_msgAnonymousSecured_TestConnection_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/Message" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.ServiceModel" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="RemoteFileInfo">
+    <wsdl:part name="parameters" element="tns:RemoteFileInfo" />
+  </wsdl:message>
+  <wsdl:message name="RemoteFileInfo_Headers">
+    <wsdl:part name="BranchOfficeCode" element="tns:BranchOfficeCode" />
+    <wsdl:part name="BranchOfficeName" element="tns:BranchOfficeName" />
+    <wsdl:part name="FileName" element="tns:FileName" />
+    <wsdl:part name="IsTestUpload" element="tns:IsTestUpload" />
+    <wsdl:part name="Length" element="tns:Length" />
+    <wsdl:part name="SimulatorDeviceIds" element="tns:SimulatorDeviceIds" />
+    <wsdl:part name="SimulatorSoftwareName" element="tns:SimulatorSoftwareName" />
+    <wsdl:part name="SimulatorSoftwareVersion" element="tns:SimulatorSoftwareVersion" />
+  </wsdl:message>
+  <wsdl:message name="ReturnValue">
+    <wsdl:part name="parameters" element="tns:ReturnValue" />
+  </wsdl:message>
+  <wsdl:message name="ReturnValue_Headers">
+    <wsdl:part name="Exception" element="tns:Exception" />
+  </wsdl:message>
+  <wsdl:message name="IDataStoreServices_TestConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnection" />
+  </wsdl:message>
+  <wsdl:message name="IDataStoreServices_TestConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TestConnectionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IDataStoreServices">
+    <wsdl:operation name="UploadDatabaseFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataStoreServices/UploadDatabaseFile" name="RemoteFileInfo" message="tns:RemoteFileInfo" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataStoreServices/UploadDatabaseFileResponse" name="ReturnValue" message="tns:ReturnValue" />
+    </wsdl:operation>
+    <wsdl:operation name="TestConnection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDataStoreServices/TestConnection" message="tns:IDataStoreServices_TestConnection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDataStoreServices/TestConnectionResponse" message="tns:IDataStoreServices_TestConnection_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DB_unsecured" type="tns:IDataStoreServices">
+    <wsp:PolicyReference URI="#DB_unsecured_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadDatabaseFile">
+      <soap12:operation soapAction="http://tempuri.org/IDataStoreServices/UploadDatabaseFile" style="document" />
+      <wsdl:input name="RemoteFileInfo">
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="BranchOfficeCode" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="BranchOfficeName" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="FileName" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="IsTestUpload" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="Length" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="SimulatorDeviceIds" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="SimulatorSoftwareName" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="SimulatorSoftwareVersion" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ReturnValue">
+        <soap12:header message="tns:ReturnValue_Headers" part="Exception" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestConnection">
+      <soap12:operation soapAction="http://tempuri.org/IDataStoreServices/TestConnection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DB_msgAnonymousSecured" type="tns:IDataStoreServices">
+    <wsp:PolicyReference URI="#DB_msgAnonymousSecured_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadDatabaseFile">
+      <soap12:operation soapAction="http://tempuri.org/IDataStoreServices/UploadDatabaseFile" style="document" />
+      <wsdl:input name="RemoteFileInfo">
+        <wsp:PolicyReference URI="#DB_msgAnonymousSecured_UploadDatabaseFile_Input_policy" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="BranchOfficeCode" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="BranchOfficeName" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="FileName" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="IsTestUpload" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="Length" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="SimulatorDeviceIds" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="SimulatorSoftwareName" use="literal" />
+        <soap12:header message="tns:RemoteFileInfo_Headers" part="SimulatorSoftwareVersion" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="ReturnValue">
+        <wsp:PolicyReference URI="#DB_msgAnonymousSecured_UploadDatabaseFile_output_policy" />
+        <soap12:header message="tns:ReturnValue_Headers" part="Exception" use="literal" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TestConnection">
+      <soap12:operation soapAction="http://tempuri.org/IDataStoreServices/TestConnection" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#DB_msgAnonymousSecured_TestConnection_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#DB_msgAnonymousSecured_TestConnection_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DatabaseServicesImplementation">
+    <wsdl:port name="DB_unsecured" binding="tns:DB_unsecured">
+      <soap12:address location="http://localhost:8733/DataStore/DatabaseServices/" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:8733/DataStore/DatabaseServices/</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="DB_msgAnonymousSecured" binding="tns:DB_msgAnonymousSecured">
+      <soap12:address location="http://localhost:8733/DataStore/DatabaseServices/Secure" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://localhost:8733/DataStore/DatabaseServices/Secure</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <KeyInfo xmlns="http://www.w3.org/2000/09/xmldsig#">
+            <X509Data>
+              <X509Certificate>MIICDjCCAXegAwIBAgIQcrgBs0s7z5hHZHwK8LosGDANBgkqhkiG9w0BAQQFADAcMRowGAYDVQQDExFDb21wYW55WFlaIFNlcnZlcjAeFw0wNjEyMzEyMjAwMDBaFw0wOTEyMzEyMjAwMDBaMBwxGjAYBgNVBAMTEUNvbXBhbnlYWVogU2VydmVyMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCy2qxUutYjiplqykEKTSHomUWAM3NEncwOPX1gma3dDX5uJrFMJ5X3kD04EGmYEGJRDU03LwuoH81nB5fjLYhhcIIfgwgaEiSgA0/DL6EEqIkqQ1V2AIzUTL2Pnd6kX7EqFEmbClQR1/wx6Ep50M339W2Q1hQ4DX1yDGzrJFA95wIDAQABo1EwTzBNBgNVHQEERjBEgBD9KDEjMfZ7Xst/FOG8Y6bxoR4wHDEaMBgGA1UEAxMRQ29tcGFueVhZWiBTZXJ2ZXKCEHK4AbNLO8+YR2R8CvC6LBgwDQYJKoZIhvcNAQEEBQADgYEAM9LB8zthRdC/XksxPM0BSoacktPHz8V4YRWdsE4QQQpTDdFsBXtUDWmZprZt6MSqKh5B6GC8z2fuK2DfDh3TM4vP8gzkSGZGAxmGXpg6j0+xIo23Cw/nsH509rMOitp7C2u98qVBHCrNgFbqPdUaio0q5Ydn0N/eitS4rSAdIkU=</X509Certificate>
+            </X509Data>
+          </KeyInfo>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ISAP.SimulatorWcfServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ISAP.SimulatorWcfServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="ArrayOfIsapBranchOffice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="IsapBranchOffice" nillable="true" type="tns:IsapBranchOffice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfIsapBranchOffice" nillable="true" type="tns:ArrayOfIsapBranchOffice" />
+  <xs:complexType name="IsapBranchOffice">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address_Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address_Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address_Street" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Address_ZIP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IsapBranchOffice" nillable="true" type="tns:IsapBranchOffice" />
+  <xs:complexType name="ArrayOfCustomerOrderContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CustomerOrderContract" nillable="true" type="tns:CustomerOrderContract" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCustomerOrderContract" nillable="true" type="tns:ArrayOfCustomerOrderContract" />
+  <xs:complexType name="CustomerOrderContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderComment" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ShippingAddress_CountryShort" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShippingAddress_Location" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShippingAddress_Street" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShippingAddress_StreetNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ShippingAddress_ZIP" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerOrderContract" nillable="true" type="tns:CustomerOrderContract" />
+  <xs:complexType name="ArrayOfDeviceInformationContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DeviceInformationContract" nillable="true" type="tns:DeviceInformationContract" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDeviceInformationContract" nillable="true" type="tns:ArrayOfDeviceInformationContract" />
+  <xs:complexType name="DeviceInformationContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="SerialNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirmwareVersion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DeviceType" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeviceInformationContract" nillable="true" type="tns:DeviceInformationContract" />
+  <xs:complexType name="ApplicationActivityReportContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ApplicationActivityReportContract" nillable="true" type="tns:ApplicationActivityReportContract" />
+  <xs:complexType name="MeasurementActivityReportContract">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ApplicationActivityReportContract">
+        <xs:sequence>
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MeasurementValues" nillable="true" type="q1:ArrayOfArrayOfint" />
+          <xs:element minOccurs="0" name="NumberOfMeasurements" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MeasurementActivityReportContract" nillable="true" type="tns:MeasurementActivityReportContract" />
+  <xs:complexType name="SimulationActivityReportContract">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ApplicationActivityReportContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="LastSimulationProfile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NumberOfSimulations" type="xs:int" />
+          <xs:element minOccurs="0" name="OriginalSimulationProfile" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SimulationActivityReportContract" nillable="true" type="tns:SimulationActivityReportContract" />
+  <xs:complexType name="ArchiveActivityReportContract">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ApplicationActivityReportContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="NumberOfCustomersSimulatedAgain" type="xs:int" />
+          <xs:element minOccurs="0" name="NumberOfCustomersViewed" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ArchiveActivityReportContract" nillable="true" type="tns:ArchiveActivityReportContract" />
+</xs:schema>

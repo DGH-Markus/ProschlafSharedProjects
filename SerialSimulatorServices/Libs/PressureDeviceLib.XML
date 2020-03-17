@@ -1,0 +1,522 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>PressureDeviceLib</name>
+    </assembly>
+    <members>
+        <member name="T:FlashProgLib.FlashProgClass">
+            **********************************************************************************************
+             --- Klasse für fürs Programmieren des µControllers ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 26.11.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+             Beschreibung  : Funktionen zum programmieren des µControllers mit hile des Bootprogramms des 
+                             N3D G3 Rockwell Härteprüfers.</summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:FlashProgLib.IFlashProg.ProgrammFlash(System.String,System.Windows.Forms.ProgressBar)">
+            ***************************************
+             Autor:  ZucR, Datum: 08.01.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+             Beschreibung:   Programmiert das Flash des Geräts mit der übergebenen Programmdatei.</summary><param name="strProgrammDatei">
+             Parameter:      [string] strProgrammDatei - Pfad der Datei welche programmiert werden soll.</param><param name="progressBar">
+             Parameter:      [ProgressBar] pbFortschritt - Fortschrittsbalken der aktualisiert werden soll.</param>
+            ***************************************
+        </member>
+        <member name="M:FlashProgLib.IFlashProg.EraseFlash(System.Windows.Forms.ProgressBar)">
+            ***************************************
+             Autor:  ZucR, Datum: 08.01.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+             Beschreibung:   Löscht das Flash des Geräts.</summary><param name="progressBar">
+             Parameter:      [ProgressBar] pbFortschritt - Fortschrittsbalken der aktualisiert werden soll.</param>
+            ***************************************
+        </member>
+        <member name="M:FlashProgLib.IFlashProg.VerifyFlash(System.String,System.Windows.Forms.ProgressBar)">
+            ***************************************
+             Autor:  ZucR, Datum: 08.01.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+             Beschreibung:   Vergleicht den Inhalt des Flash mit der übergebenen Programmdatei.</summary><param name="strProgrammDatei">
+             Parameter:      [string] strProgrammDatei - Pfad der Datei welche programmiert werden soll.</param><param name="progressBar">
+             Parameter:      [ProgressBar] pbFortschritt - Fortschrittsbalken der aktualisiert werden soll.</param>
+            ***************************************
+        </member>
+        <member name="M:FlashProgLib.IFlashProg.VerifyFlashErased(System.Windows.Forms.ProgressBar)">
+            ***************************************
+             Autor:  ZucR, Datum: 08.01.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+             Beschreibung:   Testet ob Programmspeicher leer ist.</summary><param name="progressBar">
+             Parameter:      [ProgressBar] pbFortschritt - Fortschrittsbalken der aktualisiert werden soll.</param>
+            ***************************************
+        </member>
+        <member name="M:FlashProgLib.FlashProgClass.#ctor(ComLib.ComPort)">
+            **********************************************************************************************
+             --- Konstruktor für Flash Programmierung ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 26.11.07, Compiler: VS C# 2005   77906-113-3000004-41898/// <summary>  
+             Beschreibung  : Erstellt ein Object für die Flashprogrammierung. </summary>
+            **********************************************************************************************
+        </member>
+        <member name="M:FlashProgLib.FlashProgClass.GetFlashInfo">
+            **********************************************************************************************
+             --- Flash Info auslesen ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+             Beschreibung  : Liest Informationen über die Organisation des Flash Speichers aus. </summary>
+             Parameter     : keine
+             Rückgabe      : keine <exception cref="T:System.ArgumentException">
+             Exceptions    : ArgumentException : Gerät nicht verbunden </exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:FlashProgLib.FlashProgClass.ProgrammFlash(System.String,System.Windows.Forms.ProgressBar)">
+            **********************************************************************************************
+             --- Flash programmieren ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+             Beschreibung  : Programmiert das Flash des Geräts mit der übergebenen Porgrammdatei. </summary><param name="strProgrammDatei">
+             Parameter     : (string) stProgrammDatei: Position der zu Programmierenden Programmdatei</param> <returns>
+             Rückgabe      : keine </returns><exception cref="T:System.ArgumentException">
+             Exceptions    : ArgumentException : Gerät nicht verbunden </exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:FlashProgLib.FlashProgClass.EraseFlash(System.Windows.Forms.ProgressBar)">
+            **********************************************************************************************
+             --- Flash löschen ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+             Beschreibung  : Programmiert das Flash des Geräts mit der übergebenen Porgrammdatei. </summary><param name="pbFortschritt">
+             Parameter     : (ProgressBar) pbFortschritt: Forschrittsblaken für Fortschrittsanzeige</param> <returns>
+             Rückgabe      : keine </returns><exception cref="T:System.ArgumentException">
+             Exceptions    : ArgumentException : Gerät nicht verbunden </exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:FlashProgLib.FlashProgClass.VerifyFlashErased(System.Windows.Forms.ProgressBar)">
+            **********************************************************************************************
+             --- Test Flash empty ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+             Beschreibung  : Testet ob Programmspeicher leer ist. </summary><param name="pbFortschritt">
+             Parameter     : (ProgressBar) pbFortschritt: Forschrittsblaken für Fortschrittsanzeige</param> <returns>
+             Rückgabe      : keine </returns><exception cref="T:System.ArgumentException">
+             Exceptions    : ArgumentException : Gerät nicht verbunden </exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:FlashProgLib.FlashProgClass.VerifyFlash(System.String,System.Windows.Forms.ProgressBar)">
+            **********************************************************************************************
+             --- Flash vergleichen ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+             Beschreibung  : Vergleicht das Flash des Geräts mit der übergebenen Porgrammdatei. </summary><param name="strProgrammDatei">
+             Parameter     : (string) stProgrammDatei: Position der zu Programmierenden Programmdatei</param> <returns>
+             Rückgabe      : keine </returns><exception cref="T:System.ArgumentException">
+             Exceptions    : ArgumentException : Gerät nicht verbunden </exception>
+            **********************************************************************************************
+        </member>
+        <member name="M:FlashProgLib.FlashProgClass.GenerateFlashData(System.String,System.Collections.Generic.Queue{FlashProgLib.FlashData})">
+            **********************************************************************************************
+             --- Gerarate Flash Data ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898<summary>  
+             Beschreibung  : Erzeugt aus eine INTELHEX Datei ein Speicherabbild des Flashs. </summary><param name="strProgrammDatei">
+             Parameter     : (string) stProgrammDatei: Position der zu Programmierenden Programmdatei</param><param name="qFlashData">
+                             (Queue) qFlashData: Lister der erstellten Datenblöcke.</param> <returns>
+             Rückgabe      : keine </returns><exception cref="T:System.ArgumentException">
+             Exceptions    : ArgumentException : Gerät nicht verbunden </exception>
+            **********************************************************************************************
+        </member>
+        <member name="P:FlashProgLib.FlashProgClass.AdressDataOffset">
+            **********************************************************************************************
+             --- Eigenschaft AdressDataOffset ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 08.11.2010, Compiler: VS C# 2005   77906-113-3000004-41898/// <summary>  
+             Beschreibung  : Offset für eine Programmdatei. Wenn ein Offset eingestellt wird dieser
+                           : bei der Programmdeitei zu jeder Adresse addiert. Somit kann eine Programmdatei
+                           : auf eine andere Adresse geschrieben werden</summary>
+            **********************************************************************************************
+        </member>
+        <member name="P:FlashProgLib.FlashProgClass.MaxDataLines">
+            **********************************************************************************************
+             --- Eigenschaft Anzahl der Datenzeilen im Hexfile ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+             Beschreibung  : Gibt die Anzahl von Daten Zeilen im Hexfile zurück.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="P:FlashProgLib.FlashProgClass.DataLineNumber">
+            **********************************************************************************************
+             --- Eigenschaft Aktuelle Datenzeile im Hexfile ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+             Beschreibung  : Gibt die Nummer der aktuellen Daten Zeile im Hexfile zurück.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="T:FlashProgLib.FlashData">
+            **********************************************************************************************
+             --- Structur für aufbereitete Flash Daten ---
+            **********************************************************************************************
+             Autor         : Staf, Datum: 13.02.07, Compiler: VS C# 2005   77906-113-3000004-41898 <summary> 
+             Beschreibung  : Enthält die Flash Daten nach aufberreitung aus dem Programmfile.</summary> 
+            **********************************************************************************************
+        </member>
+        <member name="T:PressureDeviceLib.PressureDevice">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:PressureDeviceLib Geräteklasse</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.PressureDevice.Com">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Instanz der allgemeinen Kommunikationsklasse</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.PressureDevice.FlashProg">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Klasse für die Flashprogrammierung (Firmwareupdate)</summary>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.OnNoConnectionError(System.Object,System.EventArgs)">
+            ***************************************
+            Autor:  ZucR, Datum: 05.11.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Prüft ob das NoConnectionError Event Abonnenten besitzt und feuert es ggf.</summary>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.OnLibError(System.Object,PressureDeviceLib.DeviceEventArgs)">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Feuert das Event ggf.</summary>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.#ctor">
+            ****************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Standardkonstruktor</summary>
+            ****************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetDeviceLibProduktVersion">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Ermittelt die Library Versionsnummer und gibt sie als string zurück.</summary><returns>
+            Rückgabe:       [String] - Library Versionsnummer</returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetPressureStart(System.Byte)">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Starten den asynchronen Auslesevorgang.</summary><param name="channel">
+            Parameter:      [byte] channel - Kanal dessen Druck gemessen werden soll.</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetPressureStatus(System.Int32@)">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Prüft ob der asynchrone Ablauf beendet wurde und gibt den Druckwert in mBar zurück.</summary><param name="pressure">
+            Parameter:      [out int] pressure - aktueller Druckwert in mBar</param><returns>
+            Rückgabe:       [bool] - true wenn der asynchrone Ablauf beendet und der </returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetPressureStart(System.Byte,System.Int32)">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Startet den asynchronen Setzvorgang. Pumpt den angegebenen Kanal auf den vorgegebenen Druck auf.</summary><param name="channel">
+            Parameter:      [byte] channel - Kanal der aufgepumpt werden soll.</param><param name="pressure">
+            Parameter:      [int] pressure - Druck auf den der Kanal aufgepumpt werden soll.</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetPressureStart(System.Collections.Generic.List{System.Byte},System.Int32)">
+            ***************************************
+            Autor:  HubW, Datum: 12.04.17, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Startet den asynchronen Setzvorgang. Pumpt alle angegebenen Kanäle auf den vorgegebenen Druck auf.</summary><param name="channel">
+            Parameter:      List[byte] channel - Liste der Kanäle, die aufgepumpt werden soll.</param><param name="pressure">
+            Parameter:      [int] pressure - Druck auf den der Kanal aufgepumpt werden soll.</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetPressureStatus(System.Int32@)">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Prüft den Status des asynchronen Aufpumpvorganges.</summary><param name="pressure">
+            Parameter:      [out int] pressure - Druck der gemessen wurde</param><returns>
+            Rückgabe:       [bool] - true wenn das asynchrone Kommando beendet wurde, false wenn nicht</returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.InflateEvacuateStart(System.Byte,System.Byte,System.Int64,System.Boolean)">
+            ***************************************
+            Autor:  ZucR, Datum: 15.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Startet den Absaug/Aufblas- Vorgang.</summary><param name="channel">
+            Parameter:      [byte] channel - Kanal der ausgesaugt / befüllt werden soll</param><param name="speed">
+            Parameter:      [int] speed - Pumpengeschwindigkeit während des Vorgangs.</param><param name="time">
+            Parameter:      [long] time - Zeitspanne in der ausgesaugt / gefüllt werden soll.</param><param name="inflate">
+            Parameter:      [bool] inflate - true wenn aufgeblasen, false wenn Luft abgelassen werden soll</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.InflateEvacuateStart(System.Collections.Generic.List{System.Byte},System.Byte,System.Int64,System.Boolean)">
+            ***************************************
+            Autor:  ZucR, Datum: 15.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Startet den Absaug/Aufblas- Vorgang.</summary><param name="channel">
+            Parameter:      [byte] channel - Kanal der ausgesaugt / befüllt werden soll</param><param name="speed">
+            Parameter:      [int] speed - Pumpengeschwindigkeit während des Vorgangs.</param><param name="time">
+            Parameter:      [long] time - Zeitspanne in der ausgesaugt / gefüllt werden soll.</param><param name="inflate">
+            Parameter:      [bool] inflate - true wenn aufgeblasen, false wenn Luft abgelassen werden soll</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.InflateEvacuateStatus">
+            ***************************************
+            Autor:  ZucR, Datum: 15.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Prüft den Status des asynchronen Absaug/Aufblas- Vorgangs.</summary><returns>
+            Rückgabe:       [bool] - true wenn das asynchrone Kommando beendet wurde, false wenn nicht</returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetOutputs(System.Int32@)">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Liest den aktuellen Wert der Ausgänge.</summary><param name="outputs">
+            Parameter:      [out int] outputs - Gibt an ob ein Ausgang gesetzt ist oder nicht.</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetOutputs(System.Int32)">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Setzt die Ausgänge des Geräts (Ventile).</summary><param name="outputs">
+            Parameter:      [int] outputs - Wert der Ausgänge</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetServicePressure(System.Int32@,System.Int32@)">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Servicefunktion - Misst den aktuellen Druck im System.</summary><returns>
+            Rückgabe:       [int] - ermittelter Druckwert in mBar</returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetServiceMotorspeed(System.Int32)">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Servicefunktion - Setzt die Motorgeschwindigkeit</summary><param name="speed">
+            Parameter:      [int] speed - Geschwindigkeit die dem Motor vorgegeben werden soll. [0 - 1000]</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetServiceMotorspeed">
+            ***************************************
+            Autor:  ZucR, Datum: 31.08.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Servicefunktion - Ermittelt die aktuelle Motorgeschwindigkeit.</summary><returns>
+            Rückgabe:       [int] - Gibt die Motorgeschwindigkeit zurück. [0 - 1000]</returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetServiceDigitsChannel(System.Int32,System.Int32@)">
+            ***************************************
+            Autor:  HubW, Datum: 11.01.12, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung: Servicefunktion - liefert den aktuellen DigitWert eines bestimmten Kanals)</summary><param name="Channel">
+            Parameter:    [int] Channel - Kanal dessen Druck gemessen werden soll</param><param name="SensorDigits">
+            Parameter:    [out int] SensorDigits - aktueller Digit Wert des Sensors</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetMaxTemperatur">
+            ***************************************
+            Autor:  HubW, Datum: 11.08.10, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Servicefunktion - Ermittelt die max. gespeicherte Gerätetemperatur.</summary><returns>
+            Rückgabe:       [int] - Gibt die MaximalTemperatur zurück </returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetMaxTemperatur(System.Int32)">
+            ***************************************
+            Autor:  HubW, Datum: 11.08.10, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Servicefunktion - setzt die max. gespeicherte Gerätetemperatur.</summary><returns>
+            Rückgabe:       [int] - Gibt die MaximalTemperatur zurück </returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetAktMaxTemperatur">
+            ***************************************
+            Autor:  HubW, Datum: 11.08.10, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Servicefunktion - Ermittelt die max. Gerätetemperatur seit dem letzten Gerätestart.</summary><returns>
+            Rückgabe:       [int] - Gibt die aktuelle MaximalTemperatur zurück </returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetAktTemperatur">
+            ***************************************
+            Autor:  HubW, Datum: 11.08.10, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Servicefunktion - Ermittelt die aktuelle Temperatur.</summary><returns>
+            Rückgabe:       [int] - Gibt die aktuelle Temperatur zurück </returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetSerialNbr">
+            ***************************************
+            Autor:  ZucR, Datum: 04.05.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Ermittelt die im Gerät gespeicherte Seriennummer.</summary><returns>
+            Rückgabe:       [String] - Seriennummer welche im Gerät gespeichert ist.</returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetSerialNbr(System.Int64,System.String)">
+            ***************************************
+            Autor:  ZucR, Datum: 04.05.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Setzt die übergebene Seriennummer.</summary><param name="templong">
+            Parameter:      [long] templong - Seriennummer die gesetzt werden soll.</param><param name="pwd">
+            Parameter:      [string] pwd - zum Setzen der Seriennummer des Geräts muss ein Passwort angegeben werden</param><returns>
+            Rückgabe:       [String] - aktuelle Seriennummer</returns>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetDruckMessungParam(System.Int32,System.Int32,System.Single)">
+            ***************************************
+            Autor:  ZucR, Datum: 08.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Setzt die Parameter der Druckmessung.</summary><param name="wartezeit">
+            Parameter:      [int] wartezeit - Wartezeit in ms (0 - 60.000ms)</param><param name="offset">
+            Parameter:      [int] offset - Druck-Offset in digits (-25 - 25 digits))</param><param name="druckSteilheit">
+            Parameter:      [float] druckSteilheit - einheitsloser Abgleichfaktor im Bereich von 0.5f bis 1.5f</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetDruckMessungParam(System.Int32@,System.Int32@,System.Single@)">
+            ***************************************
+            Autor:  ZucR, Datum: 08.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Liest die Parameter der Druckmessung.</summary><param name="wartezeit">
+            Parameter:      [out int] wartezeit - ermittelte Wartezeit in ms</param><param name="offset">
+            Parameter:      [out int] offset - ermittelter Offset in digits</param><param name="druckSteilheit">
+            Parameter:      [out float] druckSteilheit - ermittelt den einheitslosen Abgleichfaktor</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetDruckMaximum(System.Int32,System.Int32)">
+            ***************************************
+            Autor:  ZucR, Datum: 08.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Setzt den maximalen Druck für Übergabeparamter (maxDruckParam) und den absoluten 
+                            Maximalwert der vom Gerät während der Regelungsvorgänge überwacht wird (maxDruckAbsolut).</summary><param name="maxDruckParam">
+            Parameter:      [int] maxDruckParam - Maximalwert für Übergabeparameter</param><param name="maxDruckAbsolut">
+            Parameter:      [int] maxDruckAbsolut - Maximalwert für Regelungsvorgänge</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetDruckMaximum(System.Int32@,System.Int32@)">
+            ***************************************
+            Autor:  ZucR, Datum: 08.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Liest den maximalen Druck für Übergabeparameter und den absoluten Druck für Regelungsvorgänge.</summary><param name="maxDruckParam">
+            Parameter:      [out int] maxDruckParam - ermittelter maximaler Wert für Übergabeparameter</param><param name="maxDruckAbsolut">
+            Parameter:      [out int] maxDruckAbsolut - ermittelter maximaler Wert während der Regelungsvorgänge der Hardware</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.SetDruckRegelParam(System.Byte,System.Byte,System.Int32,System.Int32,System.Int32)">
+            ***************************************
+            Autor:  ZucR, Datum: 08.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Setzt die Druck-Regelparameter</summary><param name="minSpeed">
+            Parameter:      [byte] minSpeed - Minimalgeschwindigkeit der Regelung</param><param name="maxSpeed">
+            Parameter:      [byte] maxSpeed - Maximalgeschwindigkeit der Regelung</param><param name="regBereich">
+            Parameter:      [int] regBereich - Regelbereich</param><param name="steigAusgZeit">
+            Parameter:      [int] steigAusgZeit - Ausgleichszeit bei ansteigendem Druck</param><param name="fallAusgZeit">
+            Parameter:      [int] fallAusgZeit - Ausgleichszeit bei fallendem Druck</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetDruckRegelParam(System.Byte@,System.Byte@,System.Int32@,System.Int32@,System.Int32@)">
+            ***************************************
+            Autor:  ZucR, Datum: 08.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Ermittelt die eingestellten Druck-Regelparameter.</summary><param name="minSpeed">
+            Parameter:      [out byte] minSpeed - minimale Gewschindigkeit der Regelung</param><param name="maxSpeed">
+            Parameter:      [out byte] maxSpeed - maximale Geschwindigkeit der Regelung</param><param name="regBereich">
+            Parameter:      [out int] regBereich -  Regelbereich</param><param name="steigAusgZeit">
+            Parameter:      [out int] steigAusgZeit - Ausgleichszeit bei ansteigendem Druck</param><param name="fallAusgZeit">
+            Parameter:      [out int] fallAusgZeit - Ausgleichszeit bei falldendem Druck</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.PressureDevice.GetDIL(System.Byte@)">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Liest die Stellung der DIL Schalter ein. Bitweise codiert.</summary><param name="inputs">
+            Parameter:      [out byte] inputs - Stellung dces DIL-Schalter bitweise codiert. </param>
+            ***************************************
+        </member>
+        <member name="E:PressureDeviceLib.PressureDevice.NoConnectionError">
+            ***************************************
+            Autor:  ZucR, Datum: 05.11.08, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:    Event das gesendet wird, wenn versucht wird auf das Gerät 
+                             zuzugreifen obwohl keine Verbindung besteht</summary>
+            ***************************************
+        </member>
+        <member name="E:PressureDeviceLib.PressureDevice.PressureDeviceLibError">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Event das gesendet wird, wenn ein Fehler erkannt wird (ungültiger Parameter, etc.)</summary>
+            ***************************************
+        </member>
+        <member name="T:PressureDeviceLib.DeviceEventArgs">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:Device Fehler EventArgument abgeleitet von EventArgs</summary>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.DeviceEventArgs.#ctor(PressureDeviceLib.LibError,System.String)">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Konstruktor</summary><param name="nFailure">
+            Parameter:      [LibError] nFailure - Fehlercode</param><param name="nFunction">
+            Parameter:      [string] nFunction - Funktion in welcher der Fehler aufgetreten ist</param>
+            ***************************************
+        </member>
+        <member name="M:PressureDeviceLib.DeviceEventArgs.#ctor(PressureDeviceLib.LibError)">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Konstruktor</summary><param name="nFailure">
+            Parameter:      [LibError] nFailure - Fehlercode</param>
+            ***************************************
+        </member>
+        <member name="P:PressureDeviceLib.DeviceEventArgs.ErrorCode">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Code des aufgetretenen Fehlers zur weiteren Auswertung.</summary>
+            ***************************************
+        </member>
+        <member name="P:PressureDeviceLib.DeviceEventArgs.Functionname">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Funktion in welcher der Fehler aufgetreten ist. (optionale Information)</summary>
+            ***************************************
+        </member>
+        <member name="T:PressureDeviceLib.LibError">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:Enumerator für Fehler welche die Library anzeigen kann.</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.LibError.None">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   kein Fehler</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.LibError.Parameter1">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Parameter1 ungültig</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.LibError.Parameter2">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Parameter2 ungültig</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.LibError.Parameter3">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Parameter3 ungültig</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.LibError.Parameter4">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Parameter4 ungültig</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.LibError.Parameter5">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Parameter5 ungültig</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.LibError.NoAnswer">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   keine Antwort vom Gerät erhalten</summary>
+            ***************************************
+        </member>
+        <member name="F:PressureDeviceLib.LibError.GeneralFailure">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   allgemeiner Fehler aufgetreten</summary>
+            ***************************************s
+        </member>
+        <member name="F:PressureDeviceLib.LibError.IncorrectLenght">
+            ***************************************
+            Autor:  ZucR, Datum: 10.09.09, Compiler: VS C# 2005   77906-113-3000004-41898<summary>
+            Beschreibung:   Die vom Gerät erhaltene Antwort hat nicht die korrekte Länge.</summary>
+            ***************************************
+        </member>
+    </members>
+</doc>
